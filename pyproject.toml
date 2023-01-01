@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "pyyamlconf"
+version = "0.1.0"
+description = ""
+authors = ["Karthik Rangasai <karthikrangasai@gmail.com>"]
+readme = "README.md"
+packages = [{include = "pyyamlconf", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pyyaml = "^6.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^2.20.0"
+pyupgrade = "^3.2.2"
+black = "^22.10.0"
+isort = "^5.10.1"
+flake8 = "^5.0.4"
+mypy = "^0.991"
+pytest = "^7.2.0"
+coverage = "^6.5.0"
+pytest-cov = "^4.0.0"
+ipykernel = "^6.19.4"
+types-pyyaml = "^6.0.12.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+line_length = 120
+
+[tool.mypy]
+[mypy]
+exclude = "templates/{{ cookiecutter.pkg_name }}"
+pretty = true
+show_error_codes = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+scripts_are_modules = true
