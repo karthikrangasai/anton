@@ -54,7 +54,7 @@ repos:
 
       - id: pytest
         name: pytest - Testing the code
-        entry: poetry run pytest tests -vv
+        entry: poetry run pytest tests -vv --cov=src
         language: python
         pass_filenames: false
         always_run: true
