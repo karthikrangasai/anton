@@ -2,9 +2,14 @@ from pathlib import Path
 
 import pytest
 
-from tests import TESTS_EXAMPLE_ROOT
+import tests
 
 
 @pytest.fixture(scope="session")
 def simple_yaml_file_path() -> Path:
-    return TESTS_EXAMPLE_ROOT / "simple.yaml"
+    return tests.SIMPLE_YAML_TEST_FILE
+
+
+@pytest.fixture(scope="session")
+def simple_list_yaml_file_path() -> Path:
+    return tests.SIMPLE_LIST_YAML_TEST_FILE

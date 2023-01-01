@@ -9,6 +9,8 @@ def test_simple_yaml(simple_yaml_file_path: Path) -> None:
         string: str
         integer: int
         floating: float = 6.9
+        boolean: bool = True
 
     simple_obj = SimpleConfiguration()
     assert simple_obj.floating != 6.9
+    assert not simple_obj.boolean

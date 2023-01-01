@@ -1,6 +1,4 @@
 string: value
 integer: 123
 floating: 3.14
-# lst:
-#   - 1
-#   - 2
+boolean: false
