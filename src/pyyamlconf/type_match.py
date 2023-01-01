@@ -20,9 +20,23 @@ def does_list_type_match(value: Any, parameter_type: Type) -> bool:
 
     # List will have only one type. Hence indexing the first element.
     list_elements_type = typing.get_args(parameter_type)[0]
-    container_obeys_type = isinstance(value, List)  # type: ignore
+    container_obeys_type = isinstance(value, List)
     elements_obey_type = all([do_the_types_match(element, list_elements_type) for element in value])
     return container_obeys_type and elements_obey_type
+
+
+def does_dict_type_match(value: Any, parameter_type: Type) -> bool:
+    # NOTE: Assuming only
+    #       1. Dict[primitive_type, primitive_type]
+    #       2. Dict[primitive_type, Union[primitive_type, ...]]
+    #       2. Dict[Union[primitive_type, ...], primitive_type]
+    #       2. Dict[Union[primitive_type, ...], Union[primitive_type, ...]]
+    # TODO: Consider cases like Dict[..., Dict[..., ...]], Dict[Tuple[...], Dict[..., ...]], multiple nested stuff.
+    key_elements_type, value_elements_type = typing.get_args(parameter_type)
+    container_obeys_type = isinstance(value, Dict)
+    keys_obey_type = all([do_the_types_match(element, key_elements_type) for element in value.keys()])
+    values_obey_type = all([do_the_types_match(element, value_elements_type) for element in value.values()])
+    return container_obeys_type and keys_obey_type and values_obey_type
 
 
 def does_user_defined_class_match(value: Any, parameter_type: Type) -> bool:
@@ -32,6 +46,7 @@ def does_user_defined_class_match(value: Any, parameter_type: Type) -> bool:
 
 
 TYPE_TO_MATCHER_MAPPING: Dict[Any, Callable[[Any, Type], bool]] = {
+    dict: does_dict_type_match,
     list: does_list_type_match,
     Union: does_union_type_match,
 }
