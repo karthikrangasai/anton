@@ -48,6 +48,7 @@ def do_the_types_match(value: Any, parameter_type: Type) -> bool:
                 f"Type matching code has been written for {actual_type} yet. Will assume the type passes for now.",  # type: ignore
                 RuntimeWarning,
             )
+            return True
 
         type_checker_function = TYPE_TO_MATCHER_MAPPING[actual_type]
         return type_checker_function(value, parameter_type)
