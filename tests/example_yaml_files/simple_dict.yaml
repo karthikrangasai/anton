@@ -1,0 +1,6 @@
+test_dict_str_int:
+  a: 1
+  b: 2
+test_dict_int_str:
+  1: a
+  2: b
