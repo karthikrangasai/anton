@@ -7,6 +7,7 @@ from typing import Any, Dict, Union
 
 import yaml
 
+from pyyamlconf.generate_objects import generate_object
 from pyyamlconf.type_match import do_the_types_match
 
 StrOrBytesPath = Union[str, Path, PathLike]
@@ -55,13 +56,17 @@ def _yaml_conf_wrapper(
             if not do_the_types_match(value=value, parameter_type=parameter_type):
                 raise TypeError(f"{parameter_name} expects a value of type {parameter_type} but received {value}.")
 
+            generated_value = generate_object(value=value, parameter_type=parameter_type)
+
             parameters_dataclass_field = dataclass_fields[parameter_name]
 
             if parameters_dataclass_field.default is dataclass_missing_value:
-                pos_args.append(value)
+                # Encountered a positional argument. Append and continue.
+                pos_args.append(generated_value)
                 continue
 
-            kw_args[parameter_name] = value
+            # Fallback to keyword argument.
+            kw_args[parameter_name] = generated_value
 
         getattr(self, "init_setter")(*pos_args, **kw_args)
 
