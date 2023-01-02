@@ -18,3 +18,8 @@ def simple_list_yaml_file_path() -> Path:
 @pytest.fixture(scope="session")
 def simple_dict_yaml_file_path() -> Path:
     return tests.SIMPLE_DICT_YAML_TEST_FILE
+
+
+@pytest.fixture(scope="session")
+def simple_user_defined_class_yaml_file_path() -> Path:
+    return tests.SIMPLE_USER_DEFINED_CLASS_YAML_TEST_FILE

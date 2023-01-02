@@ -1,5 +1,8 @@
+import dataclasses
+import inspect
 import typing
 import warnings
+from collections import OrderedDict
 from typing import Any, Callable, Dict, List, Type, Union
 
 from pyyamlconf.constants import CONTAINER_TYPES, PRIMITIVE_TYPES
@@ -42,6 +45,18 @@ def does_dict_type_match(value: Any, parameter_type: Type) -> bool:
 def does_user_defined_class_match(value: Any, parameter_type: Type) -> bool:
     # TODO: Check whether the yaml dict exactly matches the `__init__` params of the user-defined class.
     #       Then we can do `user_defined_class(**yaml_provided_dict)`.
+
+    # NOTE: Assuming that the only classes can be dataclasses. `dataclasses.is_dataclass(value)` might be useful to check this later on.
+    # `value` here will be a dictionary of the kwargs of the __init__ for the user-defined dataclass.
+    if dataclasses.is_dataclass(parameter_type):
+        raw_values: Dict[str, Any] = OrderedDict(value)
+        value_fields: Dict[str, dataclasses.Field] = OrderedDict(getattr(parameter_type, "__dataclass_fields__"))
+
+        return all(
+            do_the_types_match(value, field_properties.type)
+            for ((arg_name, value), (arg_name, field_properties)) in zip(raw_values.items(), value_fields.items())
+        )
+
     raise NotImplementedError()
 
 
@@ -60,7 +75,7 @@ def do_the_types_match(value: Any, parameter_type: Type) -> bool:
         # NOTE: Might need to check for being a subclass of `typing._GenericAlias`
         if actual_type not in TYPE_TO_MATCHER_MAPPING:
             warnings.warn(
-                f"Type matching code has been written for {actual_type} yet. Will assume the type passes for now.",  # type: ignore
+                f"Type matching code has not been written for {actual_type} yet. Will assume the type passes for now.",
                 RuntimeWarning,
             )
             return True
@@ -76,6 +91,12 @@ def do_the_types_match(value: Any, parameter_type: Type) -> bool:
             return True
 
         # NOTE: Implement for case when parameter_type is a user-defined class
-        raise NotImplementedError()
+        if inspect.isclass(parameter_type):
+            return does_user_defined_class_match(value, parameter_type)
+
+        # NOTE: Anything else that is missed will be raised as an error for now.
+        raise NotImplementedError(
+            f"Parsing and Type checking code has not been implemented for the type: {parameter_type} yet."
+        )
 
     return does_primitive_type_match(value, parameter_type)
