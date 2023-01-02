@@ -1,4 +1,4 @@
-# Guide to Implementing a dataset
+# Contributing Guide
 
 ## Pre-Requisites
 
@@ -7,7 +7,7 @@
 - Python 3.8 or higher
 - Poetry 1.3.1
 
-## Contributing a new Dataset
+## Contributing to the project
 
 ### 1. Setting up the repository
 
@@ -81,7 +81,7 @@ Before you make changes, you should always create a new branch to implement your
 Running the following command creates a new branch from the current branch and its current state:
 
 ```bash
-$ git checkout -b feature/<dataset_name>
+$ git checkout -b feature/<small_description_of_the_feature>
 ```
 
 **NOTE:** <b style="color:red"> Please do not make changes on the master branch! </b>
@@ -163,7 +163,7 @@ $ git commit -m "A message describing your commit"
 Push these changes to **your fork** with the following command:
 
 ```bash
-$ git push origin feature/<dataset_name>
+$ git push origin feature/<small_description_of_the_feature>
 ```
 
 ### 7. Make a pull request
@@ -172,4 +172,4 @@ Make a Pull Request to implement your changes on the main repository [here](http
 
 To do so, click "New Pull Request". Then, choose your branch from your fork to push into "base:master".
 
-When opening a PR, please link the [issue](https://github.com/karthikrangasai/pyyamlconf/issues) corresponding to your dataset using [closing keywords](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) in the PR's description, e.g. `resolves #17`.
+When opening a PR, please link the [issue](https://github.com/karthikrangasai/pyyamlconf/issues) corresponding to your feature using [closing keywords](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) in the PR's description, e.g. `Resolves #23`.
