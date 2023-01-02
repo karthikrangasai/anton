@@ -4,6 +4,8 @@
 
 [![CI testing](https://github.com/karthikrangasai/pyyamlconf/actions/workflows/ci-testing.yml/badge.svg)](https://github.com/karthikrangasai/pyyamlconf/actions/workflows/ci-testing.yml)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+
+<!-- [![PyPI](https://img.shields.io/pypi/v/pyyamlconf)](Add PyPI Link here) -->
 <!-- [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/karthikrangasai/pyyamlconf/blob/master/training_notebook.ipynb) -->
 
 </div>
