@@ -7,6 +7,22 @@ authors = ["Karthik Rangasai <karthikrangasai@gmail.com>"]
 readme = "README.md"
 repository = "https://github.com/karthikrangasai/pyyamlconf"
 packages = [{include = "pyyamlconf", from = "src"}]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Typing :: Typed",
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
