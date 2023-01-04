@@ -1,5 +1,4 @@
 .vscode/
-docs/
 dev/
 
 # Byte-compiled / optimized / DLL files
@@ -74,6 +73,8 @@ instance/
 
 # Sphinx documentation
 docs/_build/
+docs/build/
+docs/source/generated/
 
 # PyBuilder
 .pybuilder/
