@@ -14,6 +14,10 @@ repos:
     hooks:
       - id: poetry-check
       - id: poetry-lock
+      - id: poetry-export
+        args: ["-o", "docs/requirements.txt", "--only=docs"]
+      - id: poetry-export
+        args: ["-o", "requirements.txt"]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
