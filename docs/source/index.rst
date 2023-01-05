@@ -6,15 +6,13 @@ pyyamlconf
    :caption: Getting Started
 
    installation
-   generated/README.md
+   getting_started
 
 .. toctree::
    :maxdepth: 1
    :caption: In-depth
 
    yaml
-
-
 
 .. toctree::
    :maxdepth: 2

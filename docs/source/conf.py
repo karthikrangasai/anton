@@ -28,7 +28,7 @@ GENERATED_DIR = SOURCE_DIR_ROOT / "generated"
 GENERATED_DIR.mkdir(parents=True, exist_ok=True)
 
 EXISTING_DOCS_NEW_PATHS_MAPPING = {
-    file_name: PROJECT_ROOT / file_name for file_name in ["README.md", "CONTRIBUTING.md", "CHANGELOG.md"]
+    file_name: PROJECT_ROOT / file_name for file_name in ["CONTRIBUTING.md", "CHANGELOG.md"]
 }
 
 
