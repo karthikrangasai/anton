@@ -4,7 +4,7 @@
 
 - A working installation of Git
 - A GitHub Account
-- Python 3.8 or higher
+- Python 3.8
 - Poetry 1.3.1
 
 ## Contributing to the project

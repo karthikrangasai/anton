@@ -87,6 +87,87 @@ def yaml_conf(
     unsafe_hash: bool = False,
     frozen: bool = False,
 ):
+    """
+    A super easy to use decorator that wraps the
+    `dataclasses.dataclass <https://docs.python.org/3.8/library/dataclasses.html#dataclasses.dataclass>`_
+    decorator to provide auto instantiation from yaml definitions with runtime type checking of values.
+
+    Args:
+        cls: A python class defintion with all the fields.
+            (Refer to the docs of `dataclasses <https://docs.python.org/3.8/library/dataclasses.html>`_.)
+
+        conf_path: Path to the yaml file containing the appropriate definition.
+        init: If true (the default), a __init__() method will be generated.
+              If the class already defines __init__(), this parameter is ignored.
+        repr: If true (the default), a __repr__() method will be generated.
+        eq: If true (the default), an __eq__() method will be generated.
+        order: If true (the default is False), __lt__(), __le__(), __gt__(), and __ge__() methods will be generated.
+        unsafe_hash: If False (the default), a __hash__() method is generated according to how eq and frozen are set.
+        frozen: If true (the default is False), assigning to fields will generate an exception.
+
+    Returns:
+        A dataclass definition equipped with auto instantiation from yaml and runtime type checking.
+
+    .. note::
+
+        Except `conf_path` all other arguments to :py:func:`pyyamlconf.yaml_conf` are directly passed on
+        to :py:func:`dataclasses.dataclass`.
+
+
+    Examples
+    ________
+
+    .. doctest::
+
+        >>> import tempfile
+        >>> from dataclasses import dataclass
+        >>> from pyyamlconf import yaml_conf
+        >>>
+        >>> @dataclass
+        ... class Point:
+        ...     x: int
+        ...     y: int
+        ...
+        >>> @dataclass
+        ... class LineSegment:
+        ...     first_point: Point
+        ...     second_point: Point
+        ...
+        >>> temp_file = tempfile.NamedTemporaryFile()
+        >>> temp_file.write(
+        ... b\"""
+        ... integer: 23
+        ... string: "Hello world"
+        ... point:
+        ...     x: 0
+        ...     y: 0
+        ... line_segment:
+        ...     first_point:
+        ...         x: 10
+        ...         y: 10
+        ...     second_point:
+        ...         x: 10
+        ...         y: 10
+        ... \""")
+        165
+        >>> temp_file.flush()
+        >>>
+        >>> @yaml_conf(conf_path=temp_file.name)
+        ... class ExampleClass:
+        ...     integer: int
+        ...     string: str
+        ...     point: Point
+        ...     line_segment: LineSegment
+        ...
+        >>> ExampleClass()
+        ExampleClass(integer=23, string='Hello world', point=Point(x=0, y=0), line_segment=LineSegment(first_point=Point(x=10, y=10), second_point=Point(x=10, y=10)))
+
+    .. testcleanup::
+
+        >>> temp_file.close()
+
+    """
+
     def wrap(cls):
         return _yaml_conf_wrapper(
             cls, conf_path=conf_path, init=init, repr=repr, eq=eq, order=order, unsafe_hash=unsafe_hash, frozen=frozen
