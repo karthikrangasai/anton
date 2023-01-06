@@ -3,7 +3,7 @@ import inspect
 import typing
 import warnings
 from collections import OrderedDict
-from typing import Any, Callable, Dict, List, Type, Union
+from typing import Any, Callable, Dict, List, Tuple, Type, Union
 
 from anton.constants import CONTAINER_TYPES, PRIMITIVE_TYPES
 
@@ -25,6 +25,31 @@ def does_list_type_match(value: Any, parameter_type: Type) -> bool:
     list_elements_type = typing.get_args(parameter_type)[0]
     container_obeys_type = isinstance(value, List)
     elements_obey_type = all([do_the_types_match(element, list_elements_type) for element in value])
+    return container_obeys_type and elements_obey_type
+
+
+def does_tuple_type_match(value: Any, parameter_type: Type) -> bool:
+    # We recieve the value as `List` althought the type will be `Tuple`
+    # Making sure it is a List
+    container_obeys_type = isinstance(value, List)
+
+    # Tuple can have two ways of typing.
+    #   - Tuple[T_1, T_2, ....., T_n] : For `i` assert do_the_types_match(value[i], T_i)
+    #   - Tuple[T, ...] : For `i` assert do_the_types_match(value[i], T)
+
+    tuple_elements_type = typing.get_args(parameter_type)
+    if len(tuple_elements_type) == 2 and tuple_elements_type[1] == Ellipsis:
+        # Tuple[T, ...] Case
+        elements_obey_type = all([do_the_types_match(element, tuple_elements_type[0]) for element in value])
+        return container_obeys_type and elements_obey_type
+
+    # Tuple[T_1, T_2, ....., T_n] Default Case
+    if len(tuple_elements_type) != len(value):
+        raise ValueError(
+            f"Defined type is {parameter_type} and received object is {tuple(value)}. Lengths do not match."
+        )
+
+    elements_obey_type = all([do_the_types_match(element, _type) for element, _type in zip(value, tuple_elements_type)])
     return container_obeys_type and elements_obey_type
 
 
@@ -63,6 +88,7 @@ def does_user_defined_class_match(value: Any, parameter_type: Type) -> bool:
 TYPE_TO_MATCHER_MAPPING: Dict[Any, Callable[[Any, Type], bool]] = {
     dict: does_dict_type_match,
     list: does_list_type_match,
+    tuple: does_tuple_type_match,
     Union: does_union_type_match,
 }
 

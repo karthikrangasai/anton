@@ -8,23 +8,27 @@ from typing import Any, Callable, Dict, List, Type, Union
 from anton.constants import CONTAINER_TYPES, PRIMITIVE_TYPES
 
 
-def generate_primitive_type_object(value: Any, parameter_type: Type) -> bool:
+def generate_primitive_type_object(value: Any, parameter_type: Type) -> Any:
     return value
 
 
-def generate_union_type_object(value: Any, parameter_type: Type) -> bool:
+def generate_union_type_object(value: Any, parameter_type: Type) -> Any:
     return value
 
 
-def generate_list_type_object(value: Any, parameter_type: Type) -> bool:
+def generate_list_type_object(value: Any, parameter_type: Type) -> Any:
     return value
 
 
-def generate_dict_type_object(value: Any, parameter_type: Type) -> bool:
+def generate_tuple_type_object(value: Any, parameter_type: Type) -> Any:
+    return tuple(value)
+
+
+def generate_dict_type_object(value: Any, parameter_type: Type) -> Any:
     return value
 
 
-def generate_user_defined_class_object(value: Any, parameter_type: Type) -> bool:
+def generate_user_defined_class_object(value: Any, parameter_type: Type) -> Any:
     # NOTE: Assuming that the only classes can be dataclasses. `dataclasses.is_dataclass(value)` might be useful to check this later on.
     # `value` here will be a dictionary of the kwargs of the __init__ for the user-defined dataclass.
     if dataclasses.is_dataclass(parameter_type):
@@ -41,14 +45,15 @@ def generate_user_defined_class_object(value: Any, parameter_type: Type) -> bool
     raise NotImplementedError()
 
 
-TYPE_TO_OBJECT_GENERATOR_MAPPING: Dict[Any, Callable[[Any, Type], bool]] = {
+TYPE_TO_OBJECT_GENERATOR_MAPPING: Dict[Any, Callable[[Any, Type], Any]] = {
     dict: generate_dict_type_object,
     list: generate_list_type_object,
+    tuple: generate_tuple_type_object,
     Union: generate_union_type_object,
 }
 
 
-def generate_object(value: Any, parameter_type: Type) -> bool:
+def generate_object(value: Any, parameter_type: Type) -> Any:
     actual_type = typing.get_origin(parameter_type)
 
     if actual_type is not None:
