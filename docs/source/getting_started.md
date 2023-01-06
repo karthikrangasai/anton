@@ -1,6 +1,6 @@
-# pyyamlconf
+# anton
 
-`pyyamlconf` is a Python library for auto instantiating yaml definitions to user defined dataclasses.
+`anton` is a Python library for auto instantiating yaml definitions to user defined dataclasses.
 
 Avoid boilerplate code of yaml loading and specific runtime type checking before the objects are created.
 
@@ -8,7 +8,7 @@ Avoid boilerplate code of yaml loading and specific runtime type checking before
 
 ```{note}
 
-    Currently `pyyamlconf` only supports Python3.8.
+    Currently `anton` only supports Python3.8.
 
     Support for Python3.8+ and missing python types will be coming in further versions of the project.
 ```
@@ -33,13 +33,13 @@ line_segment:
     y: 10
 ```
 
-`pyyamlconf` provides a super easy to use decorator `yaml_conf` that wraps the `dataclasses.dataclass` decorator to provide auto instantiation from yaml definitions with runtime type checking of values.
+`anton` provides a super easy to use decorator `yaml_conf` that wraps the `dataclasses.dataclass` decorator to provide auto instantiation from yaml definitions with runtime type checking of values.
 
 This helps avoid writing the biolerplate code for loading `yaml` files as follows:
 
 ```py
 >>> from dataclasses import dataclass
->>> from pyyamlconf import yaml_conf
+>>> from anton import yaml_conf
 >>>
 >>> @dataclass
 ... class Point:

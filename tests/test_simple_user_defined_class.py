@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict
 
-from pyyamlconf import yaml_conf
+from anton import yaml_conf
 
 
 def test_simple_dict_yaml(simple_user_defined_class_yaml_file_path: Path) -> None:

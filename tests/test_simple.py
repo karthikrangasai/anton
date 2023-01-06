@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from pyyamlconf import yaml_conf
+from anton import yaml_conf
 
 
 def test_simple_yaml(simple_yaml_file_path: Path) -> None:

@@ -2,7 +2,7 @@ from dataclasses import field
 from pathlib import Path
 from typing import List
 
-from pyyamlconf import yaml_conf
+from anton import yaml_conf
 
 
 def test_simple_list_yaml(simple_list_yaml_file_path: Path) -> None:

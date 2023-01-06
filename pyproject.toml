@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "pyyamlconf"
+name = "anton"
 version = "0.1.0"
 description = ""
 license = "MIT"
 authors = ["Karthik Rangasai Sivaraman <karthikrangasai@gmail.com>"]
 readme = "README.md"
-repository = "https://github.com/karthikrangasai/pyyamlconf"
-packages = [{include = "pyyamlconf", from = "src"}]
+repository = "https://github.com/karthikrangasai/anton"
+packages = [{include = "anton", from = "src"}]
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "License :: OSI Approved :: MIT License",
@@ -47,7 +47,7 @@ sphinx = "5.3.0"
 myst-parser = "^0.18.1"
 
 [tool.poetry.urls]
-"Bug Tracker" = "https://github.com/karthikrangasai/pyyamlconf/issues"
+"Bug Tracker" = "https://github.com/karthikrangasai/anton/issues"
 
 [build-system]
 requires = ["poetry-core"]

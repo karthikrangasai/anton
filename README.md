@@ -1,24 +1,24 @@
 <div align="center">
 
-# pyyamlconf
+# anton
 
-[![CI testing](https://github.com/karthikrangasai/pyyamlconf/actions/workflows/ci-testing.yml/badge.svg)](https://github.com/karthikrangasai/pyyamlconf/actions/workflows/ci-testing.yml)
+[![CI testing](https://github.com/karthikrangasai/anton/actions/workflows/ci-testing.yml/badge.svg)](https://github.com/karthikrangasai/anton/actions/workflows/ci-testing.yml)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
-[![Documentation Status](https://readthedocs.org/projects/pyyamlconf/badge/?version=latest)](https://pyyamlconf.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/anton/badge/?version=latest)](https://anton.readthedocs.io/en/latest/?badge=latest)
 
-<!-- [![PyPI](https://img.shields.io/pypi/v/pyyamlconf)](Add PyPI Link here) -->
-<!-- [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/karthikrangasai/pyyamlconf/blob/master/training_notebook.ipynb) -->
+<!-- [![PyPI](https://img.shields.io/pypi/v/anton)](Add PyPI Link here) -->
+<!-- [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/karthikrangasai/anton/blob/master/training_notebook.ipynb) -->
 
 </div>
 
-`pyyamlconf` is a Python library for auto instantiating yaml definitions to user defined dataclasses.
+`anton` is a Python library for auto instantiating yaml definitions to user defined dataclasses.
 
 Avoid boilerplate and get runtime type checking before the objects are created.
 
 <!-- ## Installation
 
 ```bash
-pip install pyyamlconf
+pip install anton
 ``` -->
 
 ## Usage
@@ -45,7 +45,7 @@ line_segment:
 
 ```py
 >>> from dataclasses import dataclass
->>> from pyyamlconf import yaml_conf
+>>> from anton import yaml_conf
 >>>
 >>> @dataclass
 ... class Point:
@@ -91,6 +91,6 @@ Pull requests are welcome !!! Please make sure to update tests as appropriate.
 
 For major changes, please open an issue first to discuss what you would like to change.
 
-Please do go through the [Contributing Guide](https://github.com/karthikrangasai/pyyamlconf/blob/master/CONTRIBUTING.md) if some help is required.
+Please do go through the [Contributing Guide](https://github.com/karthikrangasai/anton/blob/master/CONTRIBUTING.md) if some help is required.
 
-Note: `pyyamlconf` currently in active development. Please [open an issue](https://github.com/karthikrangasai/pyyamlconf/issues/new/choose) if you find anything that isn't working as expected.
+Note: `anton` currently in active development. Please [open an issue](https://github.com/karthikrangasai/anton/issues/new/choose) if you find anything that isn't working as expected.

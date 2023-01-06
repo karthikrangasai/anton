@@ -2,7 +2,7 @@ from typing import Any, Dict, List, Type, Union
 
 import pytest
 
-from pyyamlconf.type_match import do_the_types_match, does_dict_type_match, does_list_type_match
+from anton.type_match import do_the_types_match, does_dict_type_match, does_list_type_match
 
 LIST_MATCHING_EXAMPLES = [
     ([1, 2, 3], List[int], True),
