@@ -17,6 +17,10 @@ def does_union_type_match(value: Any, parameter_type: Type) -> bool:
     return isinstance(value, union_types)
 
 
+def does_any_type_match(value: Any, parameter_type: Type) -> bool:
+    return True
+
+
 def does_list_type_match(value: Any, parameter_type: Type) -> bool:
     # NOTE: Assuming only List[primitive_type], List[Union[primitive_types, ...]]
     # TODO: Consider cases like List[Tuple[...]], List[Dict[..., ...]], multiple nested stuff.
@@ -89,6 +93,7 @@ TYPE_TO_MATCHER_MAPPING: Dict[Any, Callable[[Any, Type], bool]] = {
     dict: does_dict_type_match,
     list: does_list_type_match,
     tuple: does_tuple_type_match,
+    Any: does_any_type_match,
     Union: does_union_type_match,
 }
 
@@ -111,10 +116,10 @@ def do_the_types_match(value: Any, parameter_type: Type) -> bool:
 
     # `parameter_type` is None: This could mean any primitve type, unsubscripted Union, user-defined class.
     if parameter_type not in PRIMITIVE_TYPES:
-        if actual_type is Union:
+        if parameter_type is Union or parameter_type is Any:
             # NOTE: For the case when parameter_type is typing.Union (not subscripted)
             #       Assuming type `Any` -> Hence `True`
-            return True
+            return does_any_type_match(value, parameter_type)
 
         # NOTE: Implement for case when parameter_type is a user-defined class
         if inspect.isclass(parameter_type):
