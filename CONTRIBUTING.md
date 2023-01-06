@@ -12,22 +12,22 @@
 ### 1. Setting up the repository
 
 #### 1.1 Forking the project
-Fork the [pyyamlconf](https://github.com/karthikrangasai/pyyamlconf) repository to your local github account.
+Fork the [anton](https://github.com/karthikrangasai/anton) repository to your local github account.
 
 #### 1.2 Forking the project
 
 After forking the project, clone the project locally using the one of the following commands:
 
 ```bash
-$ git clone git@github.com:<your_github_username>/pyyamlconf.git      # If using SSH
+$ git clone git@github.com:<your_github_username>/anton.git      # If using SSH
 
-$ git clone https://github.com/<your_github_username>/pyyamlconf.git  # If using HTTPS
+$ git clone https://github.com/<your_github_username>/anton.git  # If using HTTPS
 ```
 
 Enter the project directory once the project has been cloned locally.
 
 ```bash
-$ cd pyyamlconf  # enter the directory
+$ cd anton  # enter the directory
 ```
 
 #### 1.3 Set up appropriate remotes
@@ -39,9 +39,9 @@ To enable receiving the latest project updates, it is necessary to setup another
 Use one of the following commands:
 
 ```bash
-$ git remote add upstream git@github.com:karthikrangasai/pyyamlconf.git      # If using SSH
+$ git remote add upstream git@github.com:karthikrangasai/anton.git      # If using SSH
 
-$ git remote add upstream https://github.com/karthikrangasai/pyyamlconf.git  # If using HTTPS
+$ git remote add upstream https://github.com/karthikrangasai/anton.git  # If using HTTPS
 ```
 
 
@@ -49,10 +49,10 @@ To verify that the remote has been added, run the following command and verify t
 
 ```bash
 $ git remote -v
-origin  git@github.com:<your_github_username>/pyyamlconf.git(fetch)
-origin  git@github.com:<your_github_username>/pyyamlconf.git (push)
-upstream    git@github.com:karthikrangasai/pyyamlconf.git (fetch)
-upstream    git@github.com:karthikrangasai/pyyamlconf.git (push)
+origin  git@github.com:<your_github_username>/anton.git(fetch)
+origin  git@github.com:<your_github_username>/anton.git (push)
+upstream    git@github.com:karthikrangasai/anton.git (fetch)
+upstream    git@github.com:karthikrangasai/anton.git (push)
 ```
 
 #### 1.4 Keep the local branches up-to-date
@@ -134,7 +134,7 @@ $ poetry run pytest -vv tests
 ```
 
 **NOTE:**
-1. Run this commands from the top level of the `pyyamlconf` repo (i.e. the same directory that contains the `pyproject.toml` file).
+1. Run this commands from the top level of the `anton` repo (i.e. the same directory that contains the `pyproject.toml` file).
 2. Ensure there are no failing tests. `pre-commit` does not allow to create a commit if the checks fail.
 
 
@@ -168,8 +168,8 @@ $ git push origin feature/<small_description_of_the_feature>
 
 ### 7. Make a pull request
 
-Make a Pull Request to implement your changes on the main repository [here](https://github.com/karthikrangasai/pyyamlconf/pulls).
+Make a Pull Request to implement your changes on the main repository [here](https://github.com/karthikrangasai/anton/pulls).
 
 To do so, click "New Pull Request". Then, choose your branch from your fork to push into "base:master".
 
-When opening a PR, please link the [issue](https://github.com/karthikrangasai/pyyamlconf/issues) corresponding to your feature using [closing keywords](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) in the PR's description, e.g. `Resolves #23`.
+When opening a PR, please link the [issue](https://github.com/karthikrangasai/anton/issues) corresponding to your feature using [closing keywords](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) in the PR's description, e.g. `Resolves #23`.

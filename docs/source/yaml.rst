@@ -1,7 +1,7 @@
-pyyamlconf
+anton
 ==========
 
-.. automodule:: pyyamlconf.yaml
+.. automodule:: anton.yaml
     :members:
     :undoc-members:
     :show-inheritance:

@@ -16,7 +16,7 @@ def copy_existing_docs(src_path: Path, dest_path: Path) -> None:
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "pyyamlconf"
+project = "anton"
 copyright = "2023, Karthik Rangasai Sivaraman"
 author = "Karthik Rangasai Sivaraman"
 

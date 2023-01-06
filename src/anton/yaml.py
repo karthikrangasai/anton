@@ -7,8 +7,8 @@ from typing import Any, Dict, Union
 
 import yaml
 
-from pyyamlconf.generate_objects import generate_object
-from pyyamlconf.type_match import do_the_types_match
+from anton.generate_objects import generate_object
+from anton.type_match import do_the_types_match
 
 StrOrBytesPath = Union[str, Path, PathLike]
 
@@ -110,7 +110,7 @@ def yaml_conf(
 
     .. note::
 
-        Except `conf_path` all other arguments to :py:func:`pyyamlconf.yaml_conf` are directly passed on
+        Except `conf_path` all other arguments to :py:func:`anton.yaml_conf` are directly passed on
         to :py:func:`dataclasses.dataclass`.
 
 
@@ -121,7 +121,7 @@ def yaml_conf(
 
         >>> import tempfile
         >>> from dataclasses import dataclass
-        >>> from pyyamlconf import yaml_conf
+        >>> from anton import yaml_conf
         >>>
         >>> @dataclass
         ... class Point:

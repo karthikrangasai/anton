@@ -18,14 +18,14 @@ Security    -  in case of vulnerabilities.
 
 ### Added
 
-- `yaml_conf` is able to read, type-check custom user-defined dataclasses as field in dataclasses. ([#7](https://github.com/karthikrangasai/pyyamlconf/pull/7))
-- `yaml_conf` is able to read, type-check `typing.Dict` type feilds in dataclasses. ([#6](https://github.com/karthikrangasai/pyyamlconf/pull/6))
-- `yaml_conf` is able to read, type-check `typing.List` type feilds in dataclasses. ([#4](https://github.com/karthikrangasai/pyyamlconf/pull/4))
+- `yaml_conf` is able to read, type-check custom user-defined dataclasses as field in dataclasses. ([#7](https://github.com/karthikrangasai/anton/pull/7))
+- `yaml_conf` is able to read, type-check `typing.Dict` type feilds in dataclasses. ([#6](https://github.com/karthikrangasai/anton/pull/6))
+- `yaml_conf` is able to read, type-check `typing.List` type feilds in dataclasses. ([#4](https://github.com/karthikrangasai/anton/pull/4))
 - Added `yaml_conf` decorator which allows creating dataclasses from yaml files for primitive types by avoiding boilerplate code.
 
-<!-- [0.1.0]: https://github.com/karthikrangasai/pyyamlconf/releases/tag/v0.1.0 -->
+<!-- [0.1.0]: https://github.com/karthikrangasai/anton/releases/tag/v0.1.0 -->
 
 <!--
 Any new version:
-[M.m.p]: https://github.com/karthikrangasai/pyyamlconf/compare/v_M._m._p...vM.m.p
+[M.m.p]: https://github.com/karthikrangasai/anton/compare/v_M._m._p...vM.m.p
 -->
