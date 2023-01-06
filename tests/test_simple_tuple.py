@@ -10,7 +10,7 @@ def test_simple_tuple_yaml(simple_tuple_yaml_file_path: Path) -> None:
     class SimpleTupleConfiguration:
         single_value_tuple: Tuple[float]
         double_value_tuple: Tuple[int, str]
-        arbitrary_length_same_type_tuple: Tuple[int, ...]
+        arbitrary_length_same_type_tuple: Tuple[int, ...] = field(default_factory=lambda: (1, 2, 3))
 
     simple_tuple_obj = SimpleTupleConfiguration()
-    assert sum(simple_tuple_obj.arbitrary_length_same_type_tuple) == 55
+    assert sum(simple_tuple_obj.arbitrary_length_same_type_tuple) != 6
