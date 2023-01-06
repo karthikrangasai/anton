@@ -1,0 +1,16 @@
+single_value_tuple:
+  - 3.14
+double_value_tuple:
+  - 1
+  - "2"
+arbitrary_length_same_type_tuple:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10

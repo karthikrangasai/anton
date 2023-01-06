@@ -54,6 +54,8 @@ def _yaml_conf_wrapper(
             value = conf_as_dict.pop(parameter_name)
 
             if not do_the_types_match(value=value, parameter_type=parameter_type):
+                # FIXME: When tuple checking function fails, error message shows list type object in error message.
+                #        Would be nice if we convert to tuple and show in the error.
                 raise TypeError(f"{parameter_name} expects a value of type {parameter_type} but received {value}.")
 
             generated_value = generate_object(value=value, parameter_type=parameter_type)
