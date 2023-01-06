@@ -3,9 +3,9 @@ import inspect
 import typing
 import warnings
 from collections import OrderedDict
-from typing import Any, Callable, Dict, List, Tuple, Type, Union
+from typing import Any, Callable, Dict, List, Type, Union
 
-from anton.constants import CONTAINER_TYPES, PRIMITIVE_TYPES
+from anton.constants import PRIMITIVE_TYPES
 
 
 def does_primitive_type_match(value: Any, parameter_type: Type) -> bool:
