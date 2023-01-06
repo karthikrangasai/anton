@@ -1,5 +1,5 @@
 import inspect
-from dataclasses import MISSING as dataclass_missing_value
+from dataclasses import MISSING as DATACLASS_MISSING_VALUE
 from dataclasses import Field, dataclass
 from os import PathLike
 from pathlib import Path
@@ -31,9 +31,7 @@ def _yaml_conf_wrapper(
     setattr(dataclass_cls, "init_setter", actual_init)
     dataclass_fields: Dict[str, Field] = getattr(dataclass_cls, "__dataclass_fields__")
 
-    # To ignore the self parameter, index from 1 to all.
-    # NOTE: Can extract default value here also. `y.default`
-    actual_init_params = [(x, y.annotation) for x, y in inspect.signature(actual_init).parameters.items()][1:]
+    actual_init_params = [(x, y.annotation, y.default) for x, y in inspect.signature(actual_init).parameters.items()]
 
     def modified_init(self) -> None:
 
@@ -47,13 +45,16 @@ def _yaml_conf_wrapper(
         pos_args = []
         kw_args = {}  # NOTE: Can possibly use typing._get_defaults.
 
-        for parameter_name, parameter_type in actual_init_params:
-            if parameter_name not in conf_as_dict:
-                raise ValueError(f"{parameter_name} is missing the definition of the YAML file at {conf_path}.")
+        # To ignore the self parameter, index from 1 to all.
+        for parameter_name, parameter_type, parameter_default in actual_init_params[1:]:
+            # if parameter_name not in conf_as_dict:
+            #     raise ValueError(f"{parameter_name} is missing the definition of the YAML file at {conf_path}.")
 
-            value = conf_as_dict.pop(parameter_name)
+            value = conf_as_dict.pop(parameter_name, parameter_default)
 
             if not do_the_types_match(value=value, parameter_type=parameter_type):
+                if value == inspect._empty:
+                    raise ValueError(f"{parameter_name} missing in the configuration definition at {conf_path}.")
                 # FIXME: When tuple checking function fails, error message shows list type object in error message.
                 #        Would be nice if we convert to tuple and show in the error.
                 raise TypeError(f"{parameter_name} expects a value of type {parameter_type} but received {value}.")
@@ -62,7 +63,7 @@ def _yaml_conf_wrapper(
 
             parameters_dataclass_field = dataclass_fields[parameter_name]
 
-            if parameters_dataclass_field.default is dataclass_missing_value:
+            if parameters_dataclass_field.default is DATACLASS_MISSING_VALUE:
                 # Encountered a positional argument. Append and continue.
                 pos_args.append(generated_value)
                 continue
