@@ -71,10 +71,10 @@ def generate_object(value: Any, parameter_type: Type) -> Any:
 
     # `parameter_type` is None: This could mean any primitve type, unsubscripted Union, user-defined class.
     if parameter_type not in PRIMITIVE_TYPES:
-        if actual_type is Union:
+        if parameter_type is Union or parameter_type is Any:
             # NOTE: For the case when parameter_type is typing.Union (not subscripted)
             #       Assuming type `Any` -> Hence `True`
-            return True
+            return value
 
         # NOTE: Implement for case when parameter_type is a user-defined class
         if inspect.isclass(parameter_type):
