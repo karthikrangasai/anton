@@ -10,12 +10,12 @@ boolean: false
 
 
 def test_simple_yaml(base_dir_for_yaml_test_cases: Path) -> None:
-    SIMPLE_YAML_TEST_CASE_PATH = base_dir_for_yaml_test_cases / "simple.yaml"
+    TEST_CASE_PATH = base_dir_for_yaml_test_cases / "simple.yaml"
 
-    with open(SIMPLE_YAML_TEST_CASE_PATH, "w") as fp:
+    with open(TEST_CASE_PATH, "w") as fp:
         fp.write(TEST_CASE)
 
-    @yaml_conf(conf_path=SIMPLE_YAML_TEST_CASE_PATH)
+    @yaml_conf(conf_path=TEST_CASE_PATH)
     class SimpleConfiguration:
         string: str
         integer: int
