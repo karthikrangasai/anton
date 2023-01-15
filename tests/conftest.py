@@ -33,11 +33,6 @@ def simple_tuple_yaml_file_path() -> Path:
 
 
 @pytest.fixture(scope="session")
-def simple_any_yaml_file_path() -> Path:
-    return tests.SIMPLE_ANY_YAML_TEST_FILE
-
-
-@pytest.fixture(scope="session")
 def simple_optional_yaml_file_path() -> Path:
     return tests.SIMPLE_OPTIONAL_YAML_TEST_FILE
 
