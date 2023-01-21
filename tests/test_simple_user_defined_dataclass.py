@@ -1,9 +1,12 @@
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any, Callable
 
-from anton import yaml_conf
+import pytest
 
-TEST_CASE = """first_point:
+from anton import toml_conf, yaml_conf
+
+YAML_TEST_CASE = """first_point:
   x: 10
   y: 10
 second_point:
@@ -11,19 +14,40 @@ second_point:
   y: 10
 """
 
+TOML_TEST_CASE = """[first_point]
+x = 10
+y = 10
 
-def test_simple_dict_yaml(base_dir_for_yaml_test_cases: Path) -> None:
-    TEST_CASE_PATH = base_dir_for_yaml_test_cases / "simple_user_defined_dataclasses.yaml"
+[second_point]
+x = 10
+y = 10
+"""
 
-    with open(TEST_CASE_PATH, "w") as fp:
-        fp.write(TEST_CASE)
+
+@pytest.mark.parametrize(
+    ("conf_path_fixture_name", "file_name", "test_case", "test_func"),
+    [
+        ("base_dir_for_yaml_test_cases", "simple.yaml", YAML_TEST_CASE, yaml_conf),
+        ("base_dir_for_toml_test_cases", "simple.toml", TOML_TEST_CASE, toml_conf),
+    ],
+)
+def test_simple_dict_yaml(
+    request: pytest.FixtureRequest,
+    conf_path_fixture_name: str,
+    file_name: str,
+    test_case: str,
+    test_func: Callable[..., Any],
+) -> None:
+    conf_path: Path = request.getfixturevalue(conf_path_fixture_name)
+
+    with open(conf_path / file_name, "w") as fp:
+        fp.write(test_case)
 
     @dataclass
     class Point:
         x: int
         y: int
 
-    @yaml_conf(conf_path=TEST_CASE_PATH)
     class SimpleDataclassConfiguration:
         first_point: Point
         second_point: Point = Point(20, 20)
@@ -33,7 +57,7 @@ def test_simple_dict_yaml(base_dir_for_yaml_test_cases: Path) -> None:
             y_dict = self.second_point.y - self.first_point.y
             return pow(x_dist, 2) + pow(y_dict, 2)
 
-    simple_user_defined_obj = SimpleDataclassConfiguration()
+    simple_user_defined_obj = test_func(SimpleDataclassConfiguration, conf_path=conf_path / file_name)()
     assert simple_user_defined_obj.first_point == Point(10, 10)
     assert simple_user_defined_obj.second_point == Point(10, 10)
     assert simple_user_defined_obj.squared_distance() == 0

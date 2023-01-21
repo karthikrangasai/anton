@@ -5,12 +5,12 @@ from pathlib import Path
 from typing import Any, Dict, Union
 
 from anton.getter import get_init_arguments
-from anton.loader import yaml_load
+from anton.loader import toml_load
 
 StrOrBytesPath = Union[str, Path, PathLike]
 
 
-def _yaml_conf_wrapper(
+def _toml_conf_wrapper(
     cls,
     /,
     *,
@@ -28,7 +28,7 @@ def _yaml_conf_wrapper(
     setattr(dataclass_cls, "init_setter", actual_init)
 
     def modified_init(self) -> None:
-        conf_as_dict = yaml_load(conf_path)
+        conf_as_dict = toml_load(conf_path)
         pos_args, kw_args = get_init_arguments(
             conf_as_dict,
             getattr(dataclass_cls, "__dataclass_fields__"),
@@ -41,7 +41,7 @@ def _yaml_conf_wrapper(
     return dataclass_cls
 
 
-def yaml_conf(
+def toml_conf(
     cls=None,
     /,
     *,
@@ -56,13 +56,13 @@ def yaml_conf(
     """
     A super easy to use decorator that wraps the
     `dataclasses.dataclass <https://docs.python.org/3.8/library/dataclasses.html#dataclasses.dataclass>`_
-    decorator to provide auto instantiation from yaml definitions with runtime type checking of values.
+    decorator to provide auto instantiation from toml definitions with runtime type checking of values.
 
     Args:
         cls: A python class defintion with all the fields.
             (Refer to the docs of `dataclasses <https://docs.python.org/3.8/library/dataclasses.html>`_.)
 
-        conf_path: Path to the yaml file containing the appropriate definition.
+        conf_path: Path to the toml file containing the appropriate definition.
         init: If true (the default), a __init__() method will be generated.
               If the class already defines __init__(), this parameter is ignored.
         repr: If true (the default), a __repr__() method will be generated.
@@ -72,11 +72,11 @@ def yaml_conf(
         frozen: If true (the default is False), assigning to fields will generate an exception.
 
     Returns:
-        A dataclass definition equipped with auto instantiation from yaml and runtime type checking.
+        A dataclass definition equipped with auto instantiation from toml and runtime type checking.
 
     .. note::
 
-        Except `conf_path` all other arguments to :py:func:`anton.yaml_conf` are directly passed on
+        Except `conf_path` all other arguments to :py:func:`anton.toml_conf` are directly passed on
         to :py:func:`dataclasses.dataclass`.
 
 
@@ -87,7 +87,7 @@ def yaml_conf(
 
         >>> import tempfile
         >>> from dataclasses import dataclass
-        >>> from anton import yaml_conf
+        >>> from anton import toml_conf
         >>>
         >>> @dataclass
         ... class Point:
@@ -101,24 +101,25 @@ def yaml_conf(
         ...
         >>> temp_file = tempfile.NamedTemporaryFile()
         >>> temp_file.write(
-        ... b\"""
-        ... integer: 23
-        ... string: "Hello world"
-        ... point:
-        ...     x: 0
-        ...     y: 0
-        ... line_segment:
-        ...     first_point:
-        ...         x: 10
-        ...         y: 10
-        ...     second_point:
-        ...         x: 10
-        ...         y: 10
+        ... b\"""integer = 23
+        ... string = "Hello world"
+        ...
+        ... [point]
+        ... x = 0
+        ... y = 0
+        ...
+        ... [line_segment.first_point]
+        ... x = 10
+        ... y = 10
+        ...
+        ... [line_segment.second_point]
+        ... x = 10
+        ... y = 10
         ... \""")
-        165
+        142
         >>> temp_file.flush()
         >>>
-        >>> @yaml_conf(conf_path=temp_file.name)
+        >>> @toml_conf(conf_path=temp_file.name)
         ... class ExampleClass:
         ...     integer: int
         ...     string: str
@@ -135,7 +136,7 @@ def yaml_conf(
     """
 
     def wrap(cls):
-        return _yaml_conf_wrapper(
+        return _toml_conf_wrapper(
             cls, conf_path=conf_path, init=init, repr=repr, eq=eq, order=order, unsafe_hash=unsafe_hash, frozen=frozen
         )
 
