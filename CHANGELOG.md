@@ -18,9 +18,17 @@ Security    -  in case of vulnerabilities.
 
 ### Added
 
-- `yaml_conf` is able to read, type-check custom user-defined dataclasses as field in dataclasses. ([#7](https://github.com/karthikrangasai/anton/pull/7))
-- `yaml_conf` is able to read, type-check `typing.Dict` type feilds in dataclasses. ([#6](https://github.com/karthikrangasai/anton/pull/6))
-- `yaml_conf` is able to read, type-check `typing.List` type feilds in dataclasses. ([#4](https://github.com/karthikrangasai/anton/pull/4))
+- Introduced `anton.toml_conf` - TOML support to anton. ([#27](https://github.com/karthikrangasai/anton/pull/27))
+- Refactor `tests` module. ([#26](https://github.com/karthikrangasai/anton/pull/26))
+- `anton.yaml_conf` is able to read, type-check `typing.Any` and `typing.Optional[...]` type feilds in dataclasses. ([#22](https://github.com/karthikrangasai/anton/pull/22))
+- `anton.yaml_conf` is able to read, type-check `typing.Tuple` type feilds in dataclasses. . ([#21](https://github.com/karthikrangasai/anton/pull/21))
+- Refactor and rename all references of `pyyamlconf` to `anton`. ([#20](https://github.com/karthikrangasai/anton/pull/20))
+- Setup `readthedocs` for the project. ([#17](https://github.com/karthikrangasai/anton/pull/17))
+- Add basic documentation for the project. ([#16](https://github.com/karthikrangasai/anton/pull/16))
+- Add basic information. ([#8](https://github.com/karthikrangasai/anton/pull/8))
+- `pyyamlconf.yaml_conf` is able to read, type-check custom user-defined dataclasses as field in dataclasses. ([#7](https://github.com/karthikrangasai/anton/pull/7))
+- `pyyamlconf.yaml_conf` is able to read, type-check `typing.Dict` type feilds in dataclasses. ([#6](https://github.com/karthikrangasai/anton/pull/6))
+- `pyyamlconf.yaml_conf` is able to read, type-check `typing.List` type feilds in dataclasses. ([#4](https://github.com/karthikrangasai/anton/pull/4))
 - Added `yaml_conf` decorator which allows creating dataclasses from yaml files for primitive types by avoiding boilerplate code.
 
 <!-- [0.1.0]: https://github.com/karthikrangasai/anton/releases/tag/v0.1.0 -->
