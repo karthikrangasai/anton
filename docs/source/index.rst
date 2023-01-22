@@ -12,7 +12,7 @@ anton
    :maxdepth: 1
    :caption: In-depth
 
-   yaml
+   anton
 
 .. toctree::
    :maxdepth: 2
