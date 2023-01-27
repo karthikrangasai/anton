@@ -1,8 +1,8 @@
 import inspect
-from dataclasses import Field, dataclass
+from dataclasses import dataclass
 from os import PathLike
 from pathlib import Path
-from typing import Any, Dict, Union
+from typing import Union
 
 from anton.getter import get_init_arguments
 from anton.loader import toml_load
@@ -63,20 +63,20 @@ def toml_conf(
             (Refer to the docs of `dataclasses <https://docs.python.org/3.8/library/dataclasses.html>`_.)
 
         conf_path: Path to the toml file containing the appropriate definition.
-        init: If true (the default), a __init__() method will be generated.
-              If the class already defines __init__(), this parameter is ignored.
-        repr: If true (the default), a __repr__() method will be generated.
-        eq: If true (the default), an __eq__() method will be generated.
-        order: If true (the default is False), __lt__(), __le__(), __gt__(), and __ge__() methods will be generated.
-        unsafe_hash: If False (the default), a __hash__() method is generated according to how eq and frozen are set.
-        frozen: If true (the default is False), assigning to fields will generate an exception.
+        init: If true (the default), a ``__init__()`` method will be generated.
+              If the class already defines ``__init__()``, this parameter is ignored.
+        repr: If true (the default), a ``__repr__()`` method will be generated.
+        eq: If true (the default), an ``__eq__()`` method will be generated.
+        order: If true (the default is False), ``__lt__()``, ``__le__()``, ``__gt__()``, and ``__ge__()`` methods will be generated.
+        unsafe_hash: If False (the default), a ``__hash__()`` method is generated according to how eq and frozen are set.
+        frozen: If ``True`` (the default is ``False``), assigning to fields will generate an exception.
 
     Returns:
-        A dataclass definition equipped with auto instantiation from toml and runtime type checking.
+        A dataclass definition equipped with auto instantiation from TOML files and runtime type checking.
 
     .. note::
 
-        Except `conf_path` all other arguments to :py:func:`anton.toml_conf` are directly passed on
+        Except `conf_path` all other arguments to :py:func:`anton.toml.toml_conf` are directly passed on
         to :py:func:`dataclasses.dataclass`.
 
 

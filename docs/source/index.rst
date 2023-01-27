@@ -2,14 +2,14 @@ anton
 ==========
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Getting Started
 
    installation
    getting_started
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: In-depth
 
    anton

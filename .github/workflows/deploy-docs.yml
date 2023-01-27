@@ -1,10 +1,12 @@
-name: CI testing
+name: Build and Deploy Documentation
 
 # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
 on:
-  pull_request:
-    branches:
-      - master
+  workflow_run:
+    workflows:
+      - "CI testing"
+    types:
+      - completed
   push:
     branches:
       - master
@@ -36,7 +38,7 @@ jobs:
         uses: actions/cache@v3.2.2
         with:
           path: ".venv"
-          key: ci-testing-${{ hashFiles('poetry.lock') }}
+          key: docs-deploy-${{ hashFiles('poetry.lock') }}
 
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
@@ -49,8 +51,8 @@ jobs:
         shell: bash
         run: poetry install --no-interaction
 
-      - name: Run tests
-        shell: bash
-        run: |
-          poetry run which python
-          poetry run pre-commit run --all-files --verbose
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: docs/build # The folder the action should deploy.
+          branch: gh-pages

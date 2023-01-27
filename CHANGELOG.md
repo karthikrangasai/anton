@@ -20,7 +20,7 @@ Security    -  in case of vulnerabilities.
 
 - Introduced `anton.toml_conf` - TOML support to anton. ([#27](https://github.com/karthikrangasai/anton/pull/27))
 - Refactor `tests` module. ([#26](https://github.com/karthikrangasai/anton/pull/26))
-- `anton.yaml_conf` is able to read, type-check `typing.Any` and `typing.Optional[...]` type feilds in dataclasses. ([#22](https://github.com/karthikrangasai/anton/pull/22))
+- `anton.yaml_conf` is able to read, type-check `typing.Any` and `typing.Optional` type feilds in dataclasses. ([#22](https://github.com/karthikrangasai/anton/pull/22))
 - `anton.yaml_conf` is able to read, type-check `typing.Tuple` type feilds in dataclasses. . ([#21](https://github.com/karthikrangasai/anton/pull/21))
 - Refactor and rename all references of `pyyamlconf` to `anton`. ([#20](https://github.com/karthikrangasai/anton/pull/20))
 - Setup `readthedocs` for the project. ([#17](https://github.com/karthikrangasai/anton/pull/17))
