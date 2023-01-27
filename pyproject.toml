@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "anton"
-version = "0.0.0"
+version = "0.1.0"
 description = ""
 license = "MIT"
 authors = ["Karthik Rangasai Sivaraman <karthikrangasai@gmail.com>"]
