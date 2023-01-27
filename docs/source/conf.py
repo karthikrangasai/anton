@@ -46,6 +46,7 @@ extensions = [
     "sphinx.ext.autosummary",
     "sphinx.ext.mathjax",
     "sphinx.ext.napoleon",
+    "sphinx.ext.githubpages",
 ]
 
 napoleon_google_docstring = True
