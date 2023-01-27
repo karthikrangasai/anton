@@ -1,0 +1,79 @@
+name: Bump version
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI or API.
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Semver type of new version (major / minor / patch) or valid bump rule. Passed to `poetry version`."
+        required: true
+        type: choice
+        options:
+          - prepatch
+          - patch
+          - preminor
+          - minor
+          - premajor
+          - major
+          - prerelease.
+
+jobs:
+  bump_version:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+
+      - name: Install and configure Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: 1.3.1
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+
+      - name: Install Dependencies
+        shell: bash
+        run: poetry install --no-interaction --no-root -vvv --all-extras
+
+      - name: Install project
+        shell: bash
+        run: poetry install --no-interaction
+
+      - name: Bump the version
+        id: bump-the-version
+        shell: bash
+        run: |
+
+          VERSION="${{ github.event.inputs.version }}"
+
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          git fetch origin master
+          git checkout master
+
+          COMMIT_MESSAGE=$(poetry version $VERSION --dry-run)
+          poetry version $VERSION
+
+          SEMVER_VERSION="v$(poetry version -s)"
+
+          git commit -am "$COMMIT_MESSAGE"
+
+          git fetch --tags
+          git tag $SEMVER_VERSION
+
+          git push origin master
+          git push --tags
+
+          echo "LATEST_VERSION=$SEMVER_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        run: gh release create ${{ steps.bump-the-version.outputs.LATEST_VERSION }} -F CHANGELOG.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

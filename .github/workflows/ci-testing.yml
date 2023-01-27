@@ -12,8 +12,6 @@ on:
 jobs:
   ci_testing:
     runs-on: ubuntu-22.04
-    concurrency: ci-${{github.ref}}
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3

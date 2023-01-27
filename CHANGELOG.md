@@ -16,6 +16,8 @@ Security    -  in case of vulnerabilities.
 
 ## [Unreleased]
 
+## [0.1.0]
+
 ### Added
 
 - Introduced `anton.toml_conf` - TOML support to anton. ([#27](https://github.com/karthikrangasai/anton/pull/27))
@@ -31,7 +33,7 @@ Security    -  in case of vulnerabilities.
 - `pyyamlconf.yaml_conf` is able to read, type-check `typing.List` type feilds in dataclasses. ([#4](https://github.com/karthikrangasai/anton/pull/4))
 - Added `yaml_conf` decorator which allows creating dataclasses from yaml files for primitive types by avoiding boilerplate code.
 
-<!-- [0.1.0]: https://github.com/karthikrangasai/anton/releases/tag/v0.1.0 -->
+[0.1.0]: https://github.com/karthikrangasai/anton/releases/tag/v0.1.0
 
 <!--
 Any new version:
