@@ -37,33 +37,45 @@ repos:
         name: pyupgrade - Upgrade Python code
         entry: poetry run pyupgrade --py37-plus
         language: system
-        types: [python]
+        types:
+          - python
         pass_filenames: true
 
       - id: black
         name: black - Code Formatting with Black
         entry: poetry run black src tests
         language: system
-        types: [python]
+        types:
+          - python
         pass_filenames: false
 
       - id: isort
         name: isort - Code Formatting with isort
         entry: poetry run isort src tests
         language: system
-        types: [python]
+        types:
+          - python
         pass_filenames: false
 
       - id: mypy
         name: mypy - Static Type Checking
         entry: poetry run mypy src tests
         language: system
-        types: [python]
+        types:
+          - python
         pass_filenames: false
+        always_run: true
 
       - id: pytest
         name: pytest - Testing the code
         entry: poetry run pytest src tests -vv --cov=src
         language: python
+        pass_filenames: false
+        always_run: true
+
+      - id: sphinx
+        name: sphinx - Building documentation
+        entry: poetry run make html -C docs/
+        language: system
         pass_filenames: false
         always_run: true
