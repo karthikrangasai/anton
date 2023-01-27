@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>anton &mdash; anton  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing Guide" href="generated/CONTRIBUTING.html" />
+    <link rel="prev" title="anton" href="getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> anton
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">anton</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">In-depth</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">anton</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#anton.yaml.yaml_conf"><code class="docutils literal notranslate"><span class="pre">yaml_conf()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#anton.toml.toml_conf"><code class="docutils literal notranslate"><span class="pre">toml_conf()</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CONTRIBUTING</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="generated/CONTRIBUTING.html">Contributing Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CHANGELOG</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="generated/CHANGELOG.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">anton</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">anton</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/anton.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-anton.yaml">
+<span id="anton"></span><h1>anton<a class="headerlink" href="#module-anton.yaml" title="Permalink to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="anton.yaml.yaml_conf">
+<span class="sig-prename descclassname"><span class="pre">anton.yaml.</span></span><span class="sig-name descname"><span class="pre">yaml_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conf_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Path</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">PathLike</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unsafe_hash</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frozen</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#anton.yaml.yaml_conf" title="Permalink to this definition"></a></dt>
+<dd><p>A super easy to use decorator that wraps the
+<a class="reference external" href="https://docs.python.org/3.8/library/dataclasses.html#dataclasses.dataclass">dataclasses.dataclass</a>
+decorator to provide auto instantiation from yaml definitions with runtime type checking of values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cls</strong> – A python class defintion with all the fields.
+(Refer to the docs of <a class="reference external" href="https://docs.python.org/3.8/library/dataclasses.html">dataclasses</a>.)</p></li>
+<li><p><strong>conf_path</strong> – Path to the yaml file containing the appropriate definition.</p></li>
+<li><p><strong>init</strong> – If true (the default), a <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> method will be generated.
+If the class already defines <code class="docutils literal notranslate"><span class="pre">__init__()</span></code>, this parameter is ignored.</p></li>
+<li><p><strong>repr</strong> – If true (the default), a <code class="docutils literal notranslate"><span class="pre">__repr__()</span></code> method will be generated.</p></li>
+<li><p><strong>eq</strong> – If true (the default), an <code class="docutils literal notranslate"><span class="pre">__eq__()</span></code> method will be generated.</p></li>
+<li><p><strong>order</strong> – If true (the default is False), <code class="docutils literal notranslate"><span class="pre">__lt__()</span></code>, <code class="docutils literal notranslate"><span class="pre">__le__()</span></code>, <code class="docutils literal notranslate"><span class="pre">__gt__()</span></code>, and <code class="docutils literal notranslate"><span class="pre">__ge__()</span></code> methods will be generated.</p></li>
+<li><p><strong>unsafe_hash</strong> – If False (the default), a <code class="docutils literal notranslate"><span class="pre">__hash__()</span></code> method is generated according to how eq and frozen are set.</p></li>
+<li><p><strong>frozen</strong> – If <code class="docutils literal notranslate"><span class="pre">True</span></code> (the default is <code class="docutils literal notranslate"><span class="pre">False</span></code>), assigning to fields will generate an exception.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dataclass definition equipped with auto instantiation from YAML files and runtime type checking.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Except <cite>conf_path</cite> all other arguments to <a class="reference internal" href="#anton.yaml.yaml_conf" title="anton.yaml.yaml_conf"><code class="xref py py-func docutils literal notranslate"><span class="pre">anton.yaml.yaml_conf()</span></code></a> are directly passed on
+to <code class="xref py py-func docutils literal notranslate"><span class="pre">dataclasses.dataclass()</span></code>.</p>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">anton</span> <span class="kn">import</span> <span class="n">yaml_conf</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nd">@dataclass</span>
+<span class="gp">... </span><span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">x</span><span class="p">:</span> <span class="nb">int</span>
+<span class="gp">... </span>    <span class="n">y</span><span class="p">:</span> <span class="nb">int</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nd">@dataclass</span>
+<span class="gp">... </span><span class="k">class</span> <span class="nc">LineSegment</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">first_point</span><span class="p">:</span> <span class="n">Point</span>
+<span class="gp">... </span>    <span class="n">second_point</span><span class="p">:</span> <span class="n">Point</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">temp_file</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">temp_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+<span class="gp">... </span><span class="sa">b</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="gp">... </span><span class="sd">integer: 23</span>
+<span class="gp">... </span><span class="sd">string: &quot;Hello world&quot;</span>
+<span class="gp">... </span><span class="sd">point:</span>
+<span class="gp">... </span><span class="sd">    x: 0</span>
+<span class="gp">... </span><span class="sd">    y: 0</span>
+<span class="gp">... </span><span class="sd">line_segment:</span>
+<span class="gp">... </span><span class="sd">    first_point:</span>
+<span class="gp">... </span><span class="sd">        x: 10</span>
+<span class="gp">... </span><span class="sd">        y: 10</span>
+<span class="gp">... </span><span class="sd">    second_point:</span>
+<span class="gp">... </span><span class="sd">        x: 10</span>
+<span class="gp">... </span><span class="sd">        y: 10</span>
+<span class="gp">... </span><span class="sd">&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="go">165</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">temp_file</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nd">@yaml_conf</span><span class="p">(</span><span class="n">conf_path</span><span class="o">=</span><span class="n">temp_file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">class</span> <span class="nc">ExampleClass</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">integer</span><span class="p">:</span> <span class="nb">int</span>
+<span class="gp">... </span>    <span class="n">string</span><span class="p">:</span> <span class="nb">str</span>
+<span class="gp">... </span>    <span class="n">point</span><span class="p">:</span> <span class="n">Point</span>
+<span class="gp">... </span>    <span class="n">line_segment</span><span class="p">:</span> <span class="n">LineSegment</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ExampleClass</span><span class="p">()</span>
+<span class="go">ExampleClass(integer=23, string=&#39;Hello world&#39;, point=Point(x=0, y=0), line_segment=LineSegment(first_point=Point(x=10, y=10), second_point=Point(x=10, y=10)))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<span class="target" id="module-anton.toml"></span><dl class="py function">
+<dt class="sig sig-object py" id="anton.toml.toml_conf">
+<span class="sig-prename descclassname"><span class="pre">anton.toml.</span></span><span class="sig-name descname"><span class="pre">toml_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conf_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Path</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">PathLike</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unsafe_hash</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frozen</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#anton.toml.toml_conf" title="Permalink to this definition"></a></dt>
+<dd><p>A super easy to use decorator that wraps the
+<a class="reference external" href="https://docs.python.org/3.8/library/dataclasses.html#dataclasses.dataclass">dataclasses.dataclass</a>
+decorator to provide auto instantiation from toml definitions with runtime type checking of values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cls</strong> – <p>A python class defintion with all the fields.
+(Refer to the docs of <a class="reference external" href="https://docs.python.org/3.8/library/dataclasses.html">dataclasses</a>.)</p>
+</p></li>
+<li><p><strong>conf_path</strong> – Path to the toml file containing the appropriate definition.</p></li>
+<li><p><strong>init</strong> – If true (the default), a <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> method will be generated.
+If the class already defines <code class="docutils literal notranslate"><span class="pre">__init__()</span></code>, this parameter is ignored.</p></li>
+<li><p><strong>repr</strong> – If true (the default), a <code class="docutils literal notranslate"><span class="pre">__repr__()</span></code> method will be generated.</p></li>
+<li><p><strong>eq</strong> – If true (the default), an <code class="docutils literal notranslate"><span class="pre">__eq__()</span></code> method will be generated.</p></li>
+<li><p><strong>order</strong> – If true (the default is False), <code class="docutils literal notranslate"><span class="pre">__lt__()</span></code>, <code class="docutils literal notranslate"><span class="pre">__le__()</span></code>, <code class="docutils literal notranslate"><span class="pre">__gt__()</span></code>, and <code class="docutils literal notranslate"><span class="pre">__ge__()</span></code> methods will be generated.</p></li>
+<li><p><strong>unsafe_hash</strong> – If False (the default), a <code class="docutils literal notranslate"><span class="pre">__hash__()</span></code> method is generated according to how eq and frozen are set.</p></li>
+<li><p><strong>frozen</strong> – If <code class="docutils literal notranslate"><span class="pre">True</span></code> (the default is <code class="docutils literal notranslate"><span class="pre">False</span></code>), assigning to fields will generate an exception.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dataclass definition equipped with auto instantiation from TOML files and runtime type checking.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Except <cite>conf_path</cite> all other arguments to <a class="reference internal" href="#anton.toml.toml_conf" title="anton.toml.toml_conf"><code class="xref py py-func docutils literal notranslate"><span class="pre">anton.toml.toml_conf()</span></code></a> are directly passed on
+to <code class="xref py py-func docutils literal notranslate"><span class="pre">dataclasses.dataclass()</span></code>.</p>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">anton</span> <span class="kn">import</span> <span class="n">toml_conf</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nd">@dataclass</span>
+<span class="gp">... </span><span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">x</span><span class="p">:</span> <span class="nb">int</span>
+<span class="gp">... </span>    <span class="n">y</span><span class="p">:</span> <span class="nb">int</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nd">@dataclass</span>
+<span class="gp">... </span><span class="k">class</span> <span class="nc">LineSegment</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">first_point</span><span class="p">:</span> <span class="n">Point</span>
+<span class="gp">... </span>    <span class="n">second_point</span><span class="p">:</span> <span class="n">Point</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">temp_file</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">temp_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+<span class="gp">... </span><span class="sa">b</span><span class="sd">&quot;&quot;&quot;integer = 23</span>
+<span class="gp">... </span><span class="sd">string = &quot;Hello world&quot;</span>
+<span class="gp">...</span>
+<span class="gp">... </span><span class="sd">[point]</span>
+<span class="gp">... </span><span class="sd">x = 0</span>
+<span class="gp">... </span><span class="sd">y = 0</span>
+<span class="gp">...</span>
+<span class="gp">... </span><span class="sd">[line_segment.first_point]</span>
+<span class="gp">... </span><span class="sd">x = 10</span>
+<span class="gp">... </span><span class="sd">y = 10</span>
+<span class="gp">...</span>
+<span class="gp">... </span><span class="sd">[line_segment.second_point]</span>
+<span class="gp">... </span><span class="sd">x = 10</span>
+<span class="gp">... </span><span class="sd">y = 10</span>
+<span class="gp">... </span><span class="sd">&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="go">142</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">temp_file</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nd">@toml_conf</span><span class="p">(</span><span class="n">conf_path</span><span class="o">=</span><span class="n">temp_file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">class</span> <span class="nc">ExampleClass</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">integer</span><span class="p">:</span> <span class="nb">int</span>
+<span class="gp">... </span>    <span class="n">string</span><span class="p">:</span> <span class="nb">str</span>
+<span class="gp">... </span>    <span class="n">point</span><span class="p">:</span> <span class="n">Point</span>
+<span class="gp">... </span>    <span class="n">line_segment</span><span class="p">:</span> <span class="n">LineSegment</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ExampleClass</span><span class="p">()</span>
+<span class="go">ExampleClass(integer=23, string=&#39;Hello world&#39;, point=Point(x=0, y=0), line_segment=LineSegment(first_point=Point(x=10, y=10), second_point=Point(x=10, y=10)))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="anton" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="generated/CONTRIBUTING.html" class="btn btn-neutral float-right" title="Contributing Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Karthik Rangasai Sivaraman.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
