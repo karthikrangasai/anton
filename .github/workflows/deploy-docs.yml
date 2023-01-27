@@ -11,7 +11,7 @@ on:
       - master
 
 jobs:
-  ci_testing:
+  deploy_docs:
     runs-on: ubuntu-22.04
     concurrency: ci-${{github.ref}}
 
@@ -57,5 +57,5 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: docs/build # The folder the action should deploy.
+          folder: docs/build/html # The folder the action should deploy.
           branch: gh-pages
