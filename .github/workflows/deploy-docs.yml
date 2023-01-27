@@ -7,7 +7,6 @@ on:
       - "CI testing"
     types:
       - completed
-  push:
     branches:
       - master
 
@@ -45,11 +44,15 @@ jobs:
         shell: bash
         run: |
           if [ -d ".venv" ]; then rm -rf .venv; fi
-          poetry install --no-interaction --no-root -vvv --all-extras
+          poetry install --no-interaction --no-root -vvv --only=docs
 
       - name: Install project
         shell: bash
         run: poetry install --no-interaction
+
+      - name: Create the docs
+        shell: bash
+        run: poetry run make html -C docs/
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
