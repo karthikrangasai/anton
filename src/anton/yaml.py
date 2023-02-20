@@ -4,8 +4,8 @@ from os import PathLike
 from pathlib import Path
 from typing import Union
 
-from anton.getter import get_init_arguments
-from anton.loader import yaml_load
+from anton.core.getter import get_init_arguments
+from anton.core.loader import yaml_load
 
 StrOrBytesPath = Union[str, Path, PathLike]
 
