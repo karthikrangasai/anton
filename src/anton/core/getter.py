@@ -3,8 +3,8 @@ from dataclasses import MISSING as DATACLASS_MISSING_VALUE
 from dataclasses import Field
 from typing import Any, Dict, List, Tuple
 
-from anton.generate_objects import generate_object
-from anton.type_match import do_the_types_match
+from anton.core.type_handlers.generate_objects import generate_object
+from anton.core.type_handlers.type_match import do_the_types_match
 
 
 def get_value(
@@ -34,7 +34,6 @@ def get_init_arguments(
     pos_args = []
     kw_args = {}  # NOTE: Can possibly use typing._get_defaults.
 
-    # To ignore the self parameter, index from 1 to all.
     for parameter_name, parameter_type, parameter_default in actual_init_params:
         generated_value = get_value(conf_as_dict, parameter_name, parameter_type, parameter_default)
         parameters_dataclass_field = dataclass_fields[parameter_name]
