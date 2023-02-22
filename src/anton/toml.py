@@ -100,7 +100,7 @@ def toml_conf(
         ...     second_point: Point
         ...
         >>> temp_file = tempfile.NamedTemporaryFile()
-        >>> temp_file.write(
+        >>> _ = temp_file.write(
         ... b\"""integer = 23
         ... string = "Hello world"
         ...
@@ -116,7 +116,6 @@ def toml_conf(
         ... x = 10
         ... y = 10
         ... \""")
-        142
         >>> temp_file.flush()
         >>>
         >>> @toml_conf(conf_path=temp_file.name)

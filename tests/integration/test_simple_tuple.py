@@ -4,7 +4,7 @@ from typing import Any, Callable, Tuple
 
 import pytest
 
-from anton import toml_conf, yaml_conf
+from anton import json_conf, toml_conf, yaml_conf
 
 YAML_TEST_CASE = """single_value_tuple:
   - 3.14
@@ -29,18 +29,25 @@ double_value_tuple = [ 1, "2",]
 arbitrary_length_same_type_tuple = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 0,]
 """
 
+JSON_TEST_CASE = """{
+"single_value_tuple": [3.14],
+"double_value_tuple": [1, "2"],
+"arbitrary_length_same_type_tuple": [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+}"""
+
 
 @pytest.mark.parametrize(
     ("conf_path_fixture_name", "file_name", "test_case", "test_func"),
     [
-        ("base_dir_for_yaml_test_cases", "simple.yaml", YAML_TEST_CASE, yaml_conf),
+        ("base_dir_for_yaml_test_cases", "simple_tuple.yaml", YAML_TEST_CASE, yaml_conf),
         pytest.param(
             "base_dir_for_toml_test_cases",
-            "simple.toml",
+            "simple_tuple.toml",
             TOML_TEST_CASE,
             toml_conf,
             marks=pytest.mark.xfail(reason="TOML can't decode non homogenous tuples. Example (1, '234')."),
         ),
+        ("base_dir_for_json_test_cases", "simple_tuple.json", JSON_TEST_CASE, json_conf),
     ],
 )
 def test_simple_tuple_yaml(

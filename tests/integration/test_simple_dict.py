@@ -4,7 +4,7 @@ from typing import Any, Callable, Dict
 
 import pytest
 
-from anton import toml_conf, yaml_conf
+from anton import json_conf, toml_conf, yaml_conf
 
 YAML_TEST_CASE = """test_dict_str_int:
   a: 1
@@ -23,6 +23,11 @@ b = 2
 2 = "b"
 """
 
+JSON_TEST_CASE = """{
+"test_dict_str_int": {"a": 1,"b": 2},
+"test_dict_int_str": {1: "a",2: "b"}
+}"""
+
 
 @pytest.mark.parametrize(
     ("conf_path_fixture_name", "file_name", "test_case", "test_func"),
@@ -34,6 +39,13 @@ b = 2
             TOML_TEST_CASE,
             toml_conf,
             marks=pytest.mark.xfail(reason="TOML can't decode non string dictionary keys."),
+        ),
+        pytest.param(
+            "base_dir_for_json_test_cases",
+            "simple_dict.json",
+            JSON_TEST_CASE,
+            json_conf,
+            marks=pytest.mark.xfail(reason="JSON can't decode non string dictionary keys."),
         ),
     ],
 )
