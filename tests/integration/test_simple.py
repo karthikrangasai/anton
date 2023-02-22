@@ -3,7 +3,7 @@ from typing import Any, Callable
 
 import pytest
 
-from anton import toml_conf, yaml_conf
+from anton import json_conf, toml_conf, yaml_conf
 
 YAML_TEST_CASE = """string: value
 integer: 69
@@ -17,12 +17,20 @@ floating = 3.14
 boolean = false
 """
 
+JSON_TEST_CASE = """{
+"string": "value",
+"integer": 69,
+"floating": 3.14,
+"boolean": false
+}"""
+
 
 @pytest.mark.parametrize(
     ("conf_path_fixture_name", "file_name", "test_case", "test_func"),
     [
         ("base_dir_for_yaml_test_cases", "simple.yaml", YAML_TEST_CASE, yaml_conf),
         ("base_dir_for_toml_test_cases", "simple.toml", TOML_TEST_CASE, toml_conf),
+        ("base_dir_for_json_test_cases", "simple.json", JSON_TEST_CASE, json_conf),
     ],
 )
 def test_simple_yaml(

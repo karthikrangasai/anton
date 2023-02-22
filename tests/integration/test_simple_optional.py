@@ -3,7 +3,7 @@ from typing import Any, Callable, Optional
 
 import pytest
 
-from anton import toml_conf, yaml_conf
+from anton import json_conf, toml_conf, yaml_conf
 
 YAML_TEST_CASE = """non_optional: 123
 optional: null
@@ -12,12 +12,18 @@ optional: null
 TOML_TEST_CASE = """non_optional = 123
 """
 
+JSON_TEST_CASE = """{
+"non_optional": 123,
+"optional": null
+}"""
+
 
 @pytest.mark.parametrize(
     ("conf_path_fixture_name", "file_name", "test_case", "test_func"),
     [
         ("base_dir_for_yaml_test_cases", "simple.yaml", YAML_TEST_CASE, yaml_conf),
         ("base_dir_for_toml_test_cases", "simple.toml", TOML_TEST_CASE, toml_conf),
+        ("base_dir_for_json_test_cases", "simple.json", JSON_TEST_CASE, json_conf),
     ],
 )
 def test_simple_optional_yaml(

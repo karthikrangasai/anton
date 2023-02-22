@@ -4,7 +4,7 @@ from typing import Any, Callable
 
 import pytest
 
-from anton import toml_conf, yaml_conf
+from anton import json_conf, toml_conf, yaml_conf
 
 YAML_TEST_CASE = """first_point:
   x: 10
@@ -23,12 +23,18 @@ x = 10
 y = 10
 """
 
+JSON_TEST_CASE = """{
+"first_point":{"x": 10,"y": 10},
+"second_point":{"x": 10,"y": 10}
+}"""
+
 
 @pytest.mark.parametrize(
     ("conf_path_fixture_name", "file_name", "test_case", "test_func"),
     [
-        ("base_dir_for_yaml_test_cases", "simple.yaml", YAML_TEST_CASE, yaml_conf),
-        ("base_dir_for_toml_test_cases", "simple.toml", TOML_TEST_CASE, toml_conf),
+        ("base_dir_for_yaml_test_cases", "simple_user_defined_dataclasses.yaml", YAML_TEST_CASE, yaml_conf),
+        ("base_dir_for_toml_test_cases", "simple_user_defined_dataclasses.toml", TOML_TEST_CASE, toml_conf),
+        ("base_dir_for_json_test_cases", "simple_user_defined_dataclasses.json", JSON_TEST_CASE, json_conf),
     ],
 )
 def test_simple_dict_yaml(

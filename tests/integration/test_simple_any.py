@@ -3,7 +3,7 @@ from typing import Any, Callable
 
 import pytest
 
-from anton import toml_conf, yaml_conf
+from anton import json_conf, toml_conf, yaml_conf
 
 YAML_TEST_CASE = """any1: 1
 any2: \"2\"
@@ -17,12 +17,20 @@ any3 = 3.14
 any4 = false
 """
 
+JSON_TEST_CASE = """{
+"any1": 1,
+"any2": \"2\",
+"any3": 3.14,
+"any4": false
+}"""
+
 
 @pytest.mark.parametrize(
     ("conf_path_fixture_name", "file_name", "test_case", "test_func"),
     [
-        ("base_dir_for_yaml_test_cases", "simple.yaml", YAML_TEST_CASE, yaml_conf),
-        ("base_dir_for_toml_test_cases", "simple.toml", TOML_TEST_CASE, toml_conf),
+        ("base_dir_for_yaml_test_cases", "simple_any.yaml", YAML_TEST_CASE, yaml_conf),
+        ("base_dir_for_toml_test_cases", "simple_any.toml", TOML_TEST_CASE, toml_conf),
+        ("base_dir_for_json_test_cases", "simple_any.json", JSON_TEST_CASE, json_conf),
     ],
 )
 def test_simple_any(
