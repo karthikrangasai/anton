@@ -49,7 +49,13 @@ class Point:
     ("conf_path_fixture_name", "file_name", "test_case", "test_func"),
     [
         ("base_dir_for_yaml_test_cases", "simple_user_defined_dataclasses.yaml", YAML_TEST_CASE, yaml_conf),
-        # ("base_dir_for_toml_test_cases", "simple_user_defined_dataclasses.toml", TOML_TEST_CASE, toml_conf),
+        pytest.param(
+            "base_dir_for_toml_test_cases",
+            "simple_user_defined_dataclasses.toml",
+            TOML_TEST_CASE,
+            toml_conf,
+            marks=pytest.mark.xfail(reason="TOML can't nest Dict inside List inside Dict etc."),
+        ),
         ("base_dir_for_json_test_cases", "simple_user_defined_dataclasses.json", JSON_TEST_CASE, json_conf),
     ],
 )
