@@ -30,8 +30,8 @@ y = 10
 """
 
 JSON_TEST_CASE = """{
-"first_point":{"args": [10]},
-"second_point":{"kwargs": {"x": 10,"y": 10}}
+    "first_point":{"args": [{"args": ["abc", "xyz"]}, 10]},
+    "second_point":{"kwargs": {"save_path": {"args": ["abc", "xyz"]}, "x": 10,"y": 10}}
 }"""
 
 
@@ -50,7 +50,7 @@ class Point:
     [
         ("base_dir_for_yaml_test_cases", "simple_user_defined_dataclasses.yaml", YAML_TEST_CASE, yaml_conf),
         # ("base_dir_for_toml_test_cases", "simple_user_defined_dataclasses.toml", TOML_TEST_CASE, toml_conf),
-        # ("base_dir_for_json_test_cases", "simple_user_defined_dataclasses.json", JSON_TEST_CASE, json_conf),
+        ("base_dir_for_json_test_cases", "simple_user_defined_dataclasses.json", JSON_TEST_CASE, json_conf),
     ],
 )
 def test_simple_dict_yaml(
