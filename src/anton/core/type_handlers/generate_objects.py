@@ -3,7 +3,8 @@ import inspect
 import typing
 import warnings
 from collections import OrderedDict
-from typing import Any, Callable, Dict, Type, Union
+from copy import deepcopy
+from typing import Any, Callable, Dict, Generator, List, Type, Union
 
 from anton.core.type_handlers.constants import PRIMITIVE_TYPES
 
@@ -29,20 +30,110 @@ def generate_dict_type_object(value: Any, parameter_type: Type) -> Any:
 
 
 def generate_user_defined_class_object(value: Any, parameter_type: Type) -> Any:
-    # NOTE: Assuming that the only classes can be dataclasses. `dataclasses.is_dataclass(value)` might be useful to check this later on.
-    # `value` here will be a dictionary of the kwargs of the __init__ for the user-defined dataclass.
+    # NOTE: `value` here will be a dictionary of the kwargs of the __init__ for the user-defined dataclass.
     if dataclasses.is_dataclass(parameter_type):
         raw_values: Dict[str, Any] = OrderedDict(value)
         value_fields: Dict[str, dataclasses.Field] = OrderedDict(getattr(parameter_type, "__dataclass_fields__"))
 
-        kwargs = {
-            arg_name: generate_object(value, field_properties.type)
-            for ((arg_name, value), (arg_name, field_properties)) in zip(raw_values.items(), value_fields.items())
+        # Use only keyword arguments provided by the user.
+        dataclass_kwargs = {
+            arg_name: generate_object(value, value_fields[arg_name].type) for arg_name, value in raw_values.items()
         }
+        return parameter_type(**dataclass_kwargs)
 
-        return parameter_type(**kwargs)
+    # Generate Python object
+    # All other non-dataclass Python classes.
+    # Accept only two feilds:
+    #       args   : list of positional arguments
+    #       kwargs : dictionary of keyword arguments
 
-    raise NotImplementedError()
+    def get_type(_type: Type) -> Type:
+        if _type == inspect._empty:
+            return Any  # type: ignore
+        return _type
+
+    def next_provided_arg(cls_args_arguments: List[Any]) -> Generator[Union[Any, List[Any]], bool, None]:
+        num_args = len(cls_args_arguments)
+        i = 0
+        while i < num_args:
+            clear_all_args: bool = yield  # type: ignore
+            if clear_all_args:
+                yield cls_args_arguments[i:]
+
+                i = num_args
+            else:
+                yield cls_args_arguments[i]
+                i += 1
+
+    if not isinstance(value, Dict):
+        return False
+
+    if not all(key in ["args", "kwargs"] for key in value.keys()):
+        return False
+
+    sig = inspect.signature(parameter_type)
+
+    params = sig.parameters
+    all_arguments_names = set(params.keys())
+    visited_arguments = set()
+
+    values = deepcopy(value)
+
+    provided_args: List[Any] = values.get("args", [])
+    provided_kwargs: Dict[str, Any] = values.get("kwargs", {})
+
+    visited_kinds = set()
+
+    pos_args = []
+    kw_args = {}
+
+    gen = next_provided_arg(provided_args)
+    for _, (name, parameter) in enumerate(params.items()):
+        if name in visited_arguments:
+            raise ValueError("Argument was already passed.")
+
+        visited_arguments.add(name)
+        all_arguments_names.discard(name)
+        visited_kinds.add(parameter.kind)
+
+        is_keyword_argument = (
+            parameter.kind == inspect._ParameterKind.POSITIONAL_OR_KEYWORD and parameter.name in provided_kwargs
+        ) or (parameter.kind == inspect._ParameterKind.KEYWORD_ONLY)
+
+        is_positional_argument = (
+            parameter.kind == inspect._ParameterKind.POSITIONAL_OR_KEYWORD and parameter.name not in provided_kwargs
+        ) or (parameter.kind == inspect._ParameterKind.POSITIONAL_ONLY)
+
+        if is_positional_argument:
+            try:
+                next(gen)
+                val = gen.send(False)  # type: ignore
+                obj = generate_object(val, get_type(parameter.annotation))
+                pos_args.append(obj)
+            except StopIteration as e:
+                # Exhausted all the args
+                pass
+
+        elif is_keyword_argument:
+            if name not in provided_kwargs:
+                pass
+            val = provided_kwargs.pop(parameter.name)
+            obj = generate_object(val, get_type(parameter.annotation))
+            kw_args[name] = obj
+        elif parameter.kind == inspect._ParameterKind.VAR_POSITIONAL:
+            try:
+                next(gen)  # have to call -  to get to the next yield statement
+                val = gen.send(True)  # type: ignore
+            except StopIteration as e:
+                val = []
+
+            obj = [generate_object(_val, get_type(parameter.annotation)) for _val in val]
+            pos_args.extend(obj)
+        elif parameter.kind == inspect._ParameterKind.VAR_KEYWORD:
+            obj = {name: generate_object(_val, get_type(parameter.annotation)) for key, _val in provided_kwargs.items()}
+            kw_args.update(obj)
+
+    return parameter_type(*pos_args, **kw_args)
 
 
 TYPE_TO_OBJECT_GENERATOR_MAPPING: Dict[Any, Callable[[Any, Type], Any]] = {
