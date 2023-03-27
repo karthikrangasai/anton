@@ -18,6 +18,7 @@ Security    -  in case of vulnerabilities.
 
 ### Added
 
+- `anton.yaml_conf` is able to read, type-check any python class as feilds in dataclasses. ([#38](https://github.com/karthikrangasai/anton/pull/38))
 - Introduced `anton.json_conf` - TOML support to anton. ([#27](https://github.com/karthikrangasai/anton/pull/37))
 - Refactored the package. ([#36](https://github.com/karthikrangasai/anton/pull/36))
 - A probable fix for github actions for release. ([#34](https://github.com/karthikrangasai/anton/pull/34))
