@@ -1,8 +1,8 @@
 # anton
 
-`anton` is a Python library for auto instantiating YAML or TOML definitions to user defined dataclasses.
+`anton` is a Python library for auto instantiating YAML or JSON definitions to user defined dataclasses.
 
-Avoid boilerplate code of YAML or TOML loading and specific runtime type checking before the objects are created.
+Avoid boilerplate code of YAML or JSON loading and specific runtime type checking before the objects are created.
 
 :::{note}
 Currently ``anton`` only supports Python3.8.
@@ -115,7 +115,7 @@ custom_input = CustomInput(
 )
 ```
 
-With `anton`, all the boilerplate can be avoided by using the decorators `yaml_conf` and `toml_conf` that wraps the `dataclasses.dataclass` decorator to provide auto instantiation from YAML and TOML definitions respectively with runtime type checking of values. This helps avoid writing the biolerplate code for loading these definitions.
+With `anton`, all the boilerplate can be avoided by using the decorators `yaml_conf` and `json_conf` that wraps the `dataclasses.dataclass` decorator to provide auto instantiation from YAML and JSON definitions respectively with runtime type checking of values. This helps avoid writing the biolerplate code for loading these definitions.
 
 ```python
 import anton
