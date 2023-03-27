@@ -16,13 +16,6 @@ def base_dir_for_yaml_test_cases(base_dir_for_test_cases: Path) -> Path:
 
 
 @pytest.fixture(scope="session")
-def base_dir_for_toml_test_cases(base_dir_for_test_cases: Path) -> Path:
-    TOML_TEST_CASES_DIR = base_dir_for_test_cases / "toml"
-    TOML_TEST_CASES_DIR.mkdir(parents=True, exist_ok=True)
-    return TOML_TEST_CASES_DIR
-
-
-@pytest.fixture(scope="session")
 def base_dir_for_json_test_cases(base_dir_for_test_cases: Path) -> Path:
     JSON_TEST_CASES_DIR = base_dir_for_test_cases / "json"
     JSON_TEST_CASES_DIR.mkdir(parents=True, exist_ok=True)

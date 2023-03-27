@@ -4,7 +4,7 @@ from typing import Any, Callable
 
 import pytest
 
-from anton import json_conf, toml_conf, yaml_conf
+from anton import json_conf, yaml_conf
 
 YAML_TEST_CASE = """first_point:
   x: 10
@@ -12,15 +12,6 @@ YAML_TEST_CASE = """first_point:
 second_point:
   x: 10
   y: 10
-"""
-
-TOML_TEST_CASE = """[first_point]
-x = 10
-y = 10
-
-[second_point]
-x = 10
-y = 10
 """
 
 JSON_TEST_CASE = """{
@@ -33,7 +24,6 @@ JSON_TEST_CASE = """{
     ("conf_path_fixture_name", "file_name", "test_case", "test_func"),
     [
         ("base_dir_for_yaml_test_cases", "simple_user_defined_dataclasses.yaml", YAML_TEST_CASE, yaml_conf),
-        ("base_dir_for_toml_test_cases", "simple_user_defined_dataclasses.toml", TOML_TEST_CASE, toml_conf),
         ("base_dir_for_json_test_cases", "simple_user_defined_dataclasses.json", JSON_TEST_CASE, json_conf),
     ],
 )

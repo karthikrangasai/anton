@@ -4,7 +4,7 @@ from typing import Any, Callable, List
 
 import pytest
 
-from anton import json_conf, toml_conf, yaml_conf
+from anton import json_conf, yaml_conf
 
 YAML_TEST_CASE = """integer_list:
   - 1
@@ -23,12 +23,6 @@ bool_list:
   - false
 """
 
-TOML_TEST_CASE = """integer_list = [ 1, 2,]
-string_list = [ "Hello", "World",]
-float_list = [ 3.14, 6.9,]
-bool_list = [ true, false,]
-"""
-
 JSON_TEST_CASE = """{
 "integer_list": [1, 2],
 "string_list": ["Hello", "World"],
@@ -41,7 +35,6 @@ JSON_TEST_CASE = """{
     ("conf_path_fixture_name", "file_name", "test_case", "test_func"),
     [
         ("base_dir_for_yaml_test_cases", "simple.yaml", YAML_TEST_CASE, yaml_conf),
-        ("base_dir_for_toml_test_cases", "simple.toml", TOML_TEST_CASE, toml_conf),
         ("base_dir_for_json_test_cases", "simple.json", JSON_TEST_CASE, json_conf),
     ],
 )
