@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Changelog &mdash; anton  documentation</title>
@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> anton
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            anton
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -54,8 +58,13 @@
 <p class="caption" role="heading"><span class="caption-text">CHANGELOG</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#unreleased">[Unreleased]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#unreleased">Unreleased</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#added">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#removed">Removed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">0.1.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Added</a></li>
 </ul>
 </li>
 </ul>
@@ -75,7 +84,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Changelog</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/generated/CHANGELOG.md.txt" rel="nofollow"> View page source</a>
@@ -100,9 +109,27 @@ Fixed       -  for any bug fixes.
 Security    -  in case of vulnerabilities.
 -->
 <section id="unreleased">
-<h2>[Unreleased]<a class="headerlink" href="#unreleased" title="Permalink to this heading"></a></h2>
+<h2><a class="reference external" href="https://github.com/karthikrangasai/anton/compare/v0.1.0...HEAD">Unreleased</a><a class="headerlink" href="#unreleased" title="Permalink to this heading"></a></h2>
 <section id="added">
 <h3>Added<a class="headerlink" href="#added" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">anton.yaml_conf</span></code> is able to read, type-check any python class as feilds in dataclasses. (<a class="reference external" href="https://github.com/karthikrangasai/anton/pull/38">#38</a>)</p></li>
+<li><p>Introduced <code class="docutils literal notranslate"><span class="pre">anton.json_conf</span></code> - JSON support to anton. (<a class="reference external" href="https://github.com/karthikrangasai/anton/pull/37">#27</a>)</p></li>
+<li><p>Refactored the package. (<a class="reference external" href="https://github.com/karthikrangasai/anton/pull/36">#36</a>)</p></li>
+<li><p>A probable fix for github actions for release. (<a class="reference external" href="https://github.com/karthikrangasai/anton/pull/34">#34</a>)</p></li>
+</ul>
+</section>
+<section id="removed">
+<h3>Removed<a class="headerlink" href="#removed" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>All the features related to loading and parsing <code class="docutils literal notranslate"><span class="pre">TOML</span></code> configurations. (<span class="xref myst">#40</span>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id1">
+<h2><a class="reference external" href="https://github.com/karthikrangasai/anton/releases/tag/v0.1.0">0.1.0</a><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<section id="id2">
+<h3>Added<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Introduced <code class="docutils literal notranslate"><span class="pre">anton.toml_conf</span></code> - TOML support to anton. (<a class="reference external" href="https://github.com/karthikrangasai/anton/pull/27">#27</a>)</p></li>
 <li><p>Refactor <code class="docutils literal notranslate"><span class="pre">tests</span></code> module. (<a class="reference external" href="https://github.com/karthikrangasai/anton/pull/26">#26</a>)</p></li>
@@ -117,7 +144,6 @@ Security    -  in case of vulnerabilities.
 <li><p><code class="docutils literal notranslate"><span class="pre">pyyamlconf.yaml_conf</span></code> is able to read, type-check <code class="docutils literal notranslate"><span class="pre">typing.List</span></code> type feilds in dataclasses. (<a class="reference external" href="https://github.com/karthikrangasai/anton/pull/4">#4</a>)</p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">yaml_conf</span></code> decorator which allows creating dataclasses from yaml files for primitive types by avoiding boilerplate code.</p></li>
 </ul>
-<!-- [0.1.0]: https://github.com/karthikrangasai/anton/releases/tag/v0.1.0 -->
 <!--
 Any new version:
 [M.m.p]: https://github.com/karthikrangasai/anton/compare/v_M._m._p...vM.m.p

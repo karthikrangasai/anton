@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>anton &mdash; anton  documentation</title>
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> anton
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            anton
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -48,7 +52,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">anton</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#anton.yaml.yaml_conf"><code class="docutils literal notranslate"><span class="pre">yaml_conf()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#anton.toml.toml_conf"><code class="docutils literal notranslate"><span class="pre">toml_conf()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#anton.json.json_conf"><code class="docutils literal notranslate"><span class="pre">json_conf()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -74,7 +78,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">anton</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/anton.rst.txt" rel="nofollow"> View page source</a>
@@ -94,7 +98,7 @@
 <a class="reference external" href="https://docs.python.org/3.8/library/dataclasses.html#dataclasses.dataclass">dataclasses.dataclass</a>
 decorator to provide auto instantiation from yaml definitions with runtime type checking of values.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>cls</strong> – A python class defintion with all the fields.
 (Refer to the docs of <a class="reference external" href="https://docs.python.org/3.8/library/dataclasses.html">dataclasses</a>.)</p></li>
@@ -108,7 +112,7 @@ If the class already defines <code class="docutils literal notranslate"><span cl
 <li><p><strong>frozen</strong> – If <code class="docutils literal notranslate"><span class="pre">True</span></code> (the default is <code class="docutils literal notranslate"><span class="pre">False</span></code>), assigning to fields will generate an exception.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A dataclass definition equipped with auto instantiation from YAML files and runtime type checking.</p>
 </dd>
 </dl>
@@ -133,7 +137,7 @@ to <code class="xref py py-func docutils literal notranslate"><span class="pre">
 <span class="gp">... </span>    <span class="n">second_point</span><span class="p">:</span> <span class="n">Point</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">temp_file</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">temp_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">temp_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
 <span class="gp">... </span><span class="sa">b</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="gp">... </span><span class="sd">integer: 23</span>
 <span class="gp">... </span><span class="sd">string: &quot;Hello world&quot;</span>
@@ -148,7 +152,6 @@ to <code class="xref py py-func docutils literal notranslate"><span class="pre">
 <span class="gp">... </span><span class="sd">        x: 10</span>
 <span class="gp">... </span><span class="sd">        y: 10</span>
 <span class="gp">... </span><span class="sd">&quot;&quot;&quot;</span><span class="p">)</span>
-<span class="go">165</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">temp_file</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nd">@yaml_conf</span><span class="p">(</span><span class="n">conf_path</span><span class="o">=</span><span class="n">temp_file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -164,19 +167,19 @@ to <code class="xref py py-func docutils literal notranslate"><span class="pre">
 </div>
 </dd></dl>
 
-<span class="target" id="module-anton.toml"></span><dl class="py function">
-<dt class="sig sig-object py" id="anton.toml.toml_conf">
-<span class="sig-prename descclassname"><span class="pre">anton.toml.</span></span><span class="sig-name descname"><span class="pre">toml_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conf_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Path</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">PathLike</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unsafe_hash</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frozen</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#anton.toml.toml_conf" title="Permalink to this definition"></a></dt>
+<span class="target" id="module-anton.json"></span><dl class="py function">
+<dt class="sig sig-object py" id="anton.json.json_conf">
+<span class="sig-prename descclassname"><span class="pre">anton.json.</span></span><span class="sig-name descname"><span class="pre">json_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conf_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Path</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">PathLike</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unsafe_hash</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frozen</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#anton.json.json_conf" title="Permalink to this definition"></a></dt>
 <dd><p>A super easy to use decorator that wraps the
 <a class="reference external" href="https://docs.python.org/3.8/library/dataclasses.html#dataclasses.dataclass">dataclasses.dataclass</a>
-decorator to provide auto instantiation from toml definitions with runtime type checking of values.</p>
+decorator to provide auto instantiation from json definitions with runtime type checking of values.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>cls</strong> – <p>A python class defintion with all the fields.
 (Refer to the docs of <a class="reference external" href="https://docs.python.org/3.8/library/dataclasses.html">dataclasses</a>.)</p>
 </p></li>
-<li><p><strong>conf_path</strong> – Path to the toml file containing the appropriate definition.</p></li>
+<li><p><strong>conf_path</strong> – Path to the json file containing the appropriate definition.</p></li>
 <li><p><strong>init</strong> – If true (the default), a <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> method will be generated.
 If the class already defines <code class="docutils literal notranslate"><span class="pre">__init__()</span></code>, this parameter is ignored.</p></li>
 <li><p><strong>repr</strong> – If true (the default), a <code class="docutils literal notranslate"><span class="pre">__repr__()</span></code> method will be generated.</p></li>
@@ -186,19 +189,19 @@ If the class already defines <code class="docutils literal notranslate"><span cl
 <li><p><strong>frozen</strong> – If <code class="docutils literal notranslate"><span class="pre">True</span></code> (the default is <code class="docutils literal notranslate"><span class="pre">False</span></code>), assigning to fields will generate an exception.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A dataclass definition equipped with auto instantiation from TOML files and runtime type checking.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dataclass definition equipped with auto instantiation from JSON files and runtime type checking.</p>
 </dd>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Except <cite>conf_path</cite> all other arguments to <a class="reference internal" href="#anton.toml.toml_conf" title="anton.toml.toml_conf"><code class="xref py py-func docutils literal notranslate"><span class="pre">anton.toml.toml_conf()</span></code></a> are directly passed on
+<p>Except <cite>conf_path</cite> all other arguments to <a class="reference internal" href="#anton.json.json_conf" title="anton.json.json_conf"><code class="xref py py-func docutils literal notranslate"><span class="pre">anton.json.json_conf()</span></code></a> are directly passed on
 to <code class="xref py py-func docutils literal notranslate"><span class="pre">dataclasses.dataclass()</span></code>.</p>
 </div>
 <p class="rubric">Examples</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">tempfile</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">anton</span> <span class="kn">import</span> <span class="n">toml_conf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">anton</span> <span class="kn">import</span> <span class="n">json_conf</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nd">@dataclass</span>
 <span class="gp">... </span><span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
@@ -211,26 +214,29 @@ to <code class="xref py py-func docutils literal notranslate"><span class="pre">
 <span class="gp">... </span>    <span class="n">second_point</span><span class="p">:</span> <span class="n">Point</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">temp_file</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">temp_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
-<span class="gp">... </span><span class="sa">b</span><span class="sd">&quot;&quot;&quot;integer = 23</span>
-<span class="gp">... </span><span class="sd">string = &quot;Hello world&quot;</span>
-<span class="gp">...</span>
-<span class="gp">... </span><span class="sd">[point]</span>
-<span class="gp">... </span><span class="sd">x = 0</span>
-<span class="gp">... </span><span class="sd">y = 0</span>
-<span class="gp">...</span>
-<span class="gp">... </span><span class="sd">[line_segment.first_point]</span>
-<span class="gp">... </span><span class="sd">x = 10</span>
-<span class="gp">... </span><span class="sd">y = 10</span>
-<span class="gp">...</span>
-<span class="gp">... </span><span class="sd">[line_segment.second_point]</span>
-<span class="gp">... </span><span class="sd">x = 10</span>
-<span class="gp">... </span><span class="sd">y = 10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">temp_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+<span class="gp">... </span><span class="sa">b</span><span class="sd">&quot;&quot;&quot;{</span>
+<span class="gp">... </span><span class="sd">    &quot;integer&quot;: 23,</span>
+<span class="gp">... </span><span class="sd">    &quot;string&quot;: &quot;Hello world&quot;,</span>
+<span class="gp">... </span><span class="sd">    &quot;point&quot;: {</span>
+<span class="gp">... </span><span class="sd">        &quot;x&quot;: 0,</span>
+<span class="gp">... </span><span class="sd">        &quot;y&quot;: 0</span>
+<span class="gp">... </span><span class="sd">    },</span>
+<span class="gp">... </span><span class="sd">    &quot;line_segment&quot;: {</span>
+<span class="gp">... </span><span class="sd">        &quot;first_point&quot;: {</span>
+<span class="gp">... </span><span class="sd">            &quot;x&quot;: 10,</span>
+<span class="gp">... </span><span class="sd">            &quot;y&quot;: 10</span>
+<span class="gp">... </span><span class="sd">        },</span>
+<span class="gp">... </span><span class="sd">        &quot;second_point&quot;: {</span>
+<span class="gp">... </span><span class="sd">            &quot;x&quot;: 10,</span>
+<span class="gp">... </span><span class="sd">            &quot;y&quot;: 10</span>
+<span class="gp">... </span><span class="sd">        }</span>
+<span class="gp">... </span><span class="sd">    }</span>
+<span class="gp">... </span><span class="sd">}</span>
 <span class="gp">... </span><span class="sd">&quot;&quot;&quot;</span><span class="p">)</span>
-<span class="go">142</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">temp_file</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
 <span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nd">@toml_conf</span><span class="p">(</span><span class="n">conf_path</span><span class="o">=</span><span class="n">temp_file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nd">@json_conf</span><span class="p">(</span><span class="n">conf_path</span><span class="o">=</span><span class="n">temp_file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 <span class="gp">... </span><span class="k">class</span> <span class="nc">ExampleClass</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="n">integer</span><span class="p">:</span> <span class="nb">int</span>
 <span class="gp">... </span>    <span class="n">string</span><span class="p">:</span> <span class="nb">str</span>

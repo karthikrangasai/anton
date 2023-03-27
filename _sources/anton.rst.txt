@@ -6,7 +6,7 @@ anton
     :undoc-members:
     :show-inheritance:
 
-.. automodule:: anton.toml
+.. automodule:: anton.json
     :members:
     :undoc-members:
     :show-inheritance:
