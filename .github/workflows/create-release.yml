@@ -37,9 +37,19 @@ jobs:
           virtualenvs-in-project: true
           installer-parallel: true
 
+      - name: Cache the virtual environment
+        id: cache
+        uses: actions/cache@v3.2.2
+        with:
+          path: ".venv"
+          key: ci-testing-${{ hashFiles('poetry.lock') }}
+
       - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         shell: bash
-        run: poetry install --no-interaction --no-root -vvv --all-extras
+        run: |
+          if [ -d ".venv" ]; then rm -rf .venv; fi
+          poetry install --no-interaction --no-root -vvv --all-extras
 
       - name: Install project
         shell: bash
@@ -85,6 +95,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Need this to get the latest commit made by the github-actions[bot]
+      - name: Get latest code
+        run: git pull origin master
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
@@ -98,9 +112,19 @@ jobs:
           virtualenvs-in-project: true
           installer-parallel: true
 
+      - name: Cache the virtual environment
+        id: cache
+        uses: actions/cache@v3.2.2
+        with:
+          path: ".venv"
+          key: ci-testing-${{ hashFiles('poetry.lock') }}
+
       - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         shell: bash
-        run: poetry install --no-interaction --no-root -vvv --all-extras
+        run: |
+          if [ -d ".venv" ]; then rm -rf .venv; fi
+          poetry install --no-interaction --no-root -vvv --all-extras
 
       - name: Install project
         shell: bash
