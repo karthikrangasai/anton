@@ -27,8 +27,8 @@ def _yaml_conf_wrapper(
     actual_init = getattr(dataclass_cls, "__init__")
     setattr(dataclass_cls, "init_setter", actual_init)
 
-    def modified_init(self) -> None:
-        conf_as_dict = yaml_load(conf_path)
+    def modified_init(self, yaml_conf_path: StrOrBytesPath = conf_path) -> None:
+        conf_as_dict = yaml_load(yaml_conf_path)
         pos_args, kw_args = get_init_arguments(
             conf_as_dict,
             getattr(dataclass_cls, "__dataclass_fields__"),
