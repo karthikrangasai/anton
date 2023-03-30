@@ -14,34 +14,40 @@ Fixed       -  for any bug fixes.
 Security    -  in case of vulnerabilities.
 -->
 
+## [Unreleased]
+
+### Added
+
+- `anton` is able to read, type-check `typing.Set` type fields in dataclasses. ([#45](https://github.com/karthikrangasai/anton/pull/45))
+
 ## [0.2.0]
 
 ### Added
 
-- `anton.yaml_conf` is able to read, type-check any python class as feilds in dataclasses. ([#38](https://github.com/karthikrangasai/anton/pull/38))
-- Introduced `anton.json_conf` - JSON support to anton. ([#27](https://github.com/karthikrangasai/anton/pull/37))
+- `anton` is able to read, type-check any python class as feilds in dataclasses. ([#38](https://github.com/karthikrangasai/anton/pull/38))
+- Introduced `json_conf` in `anton` - Support for reading and parsing JSON configurations. ([#27](https://github.com/karthikrangasai/anton/pull/37))
 - Refactored the package. ([#36](https://github.com/karthikrangasai/anton/pull/36))
 - A probable fix for github actions for release. ([#34](https://github.com/karthikrangasai/anton/pull/34))
 
 ### Removed
 
-- All the features related to loading and parsing `TOML` configurations. ([#40]((https://github.com/karthikrangasai/anton/pull/40)))
+- `toml_conf` : All the features related to loading and parsing `TOML` configurations. ([#40](https://github.com/karthikrangasai/anton/pull/40))
 
 ## [0.1.0]
 
 ### Added
 
-- Introduced `anton.toml_conf` - TOML support to anton. ([#27](https://github.com/karthikrangasai/anton/pull/27))
+- Introduced `toml_conf` in `anton` - TOML support to anton. ([#27](https://github.com/karthikrangasai/anton/pull/27))
 - Refactor `tests` module. ([#26](https://github.com/karthikrangasai/anton/pull/26))
-- `anton.yaml_conf` is able to read, type-check `typing.Any` and `typing.Optional` type feilds in dataclasses. ([#22](https://github.com/karthikrangasai/anton/pull/22))
-- `anton.yaml_conf` is able to read, type-check `typing.Tuple` type feilds in dataclasses. . ([#21](https://github.com/karthikrangasai/anton/pull/21))
+- `anton` is able to read, type-check `typing.Any` and `typing.Optional` type feilds in dataclasses. ([#22](https://github.com/karthikrangasai/anton/pull/22))
+- `anton` is able to read, type-check `typing.Tuple` type feilds in dataclasses. . ([#21](https://github.com/karthikrangasai/anton/pull/21))
 - Refactor and rename all references of `pyyamlconf` to `anton`. ([#20](https://github.com/karthikrangasai/anton/pull/20))
 - Setup `readthedocs` for the project. ([#17](https://github.com/karthikrangasai/anton/pull/17))
 - Add basic documentation for the project. ([#16](https://github.com/karthikrangasai/anton/pull/16))
 - Add basic information. ([#8](https://github.com/karthikrangasai/anton/pull/8))
-- `pyyamlconf.yaml_conf` is able to read, type-check custom user-defined dataclasses as field in dataclasses. ([#7](https://github.com/karthikrangasai/anton/pull/7))
-- `pyyamlconf.yaml_conf` is able to read, type-check `typing.Dict` type feilds in dataclasses. ([#6](https://github.com/karthikrangasai/anton/pull/6))
-- `pyyamlconf.yaml_conf` is able to read, type-check `typing.List` type feilds in dataclasses. ([#4](https://github.com/karthikrangasai/anton/pull/4))
+- `pyyamlconf` is able to read, type-check custom user-defined dataclasses as field in dataclasses. ([#7](https://github.com/karthikrangasai/anton/pull/7))
+- `pyyamlconf` is able to read, type-check `typing.Dict` type feilds in dataclasses. ([#6](https://github.com/karthikrangasai/anton/pull/6))
+- `pyyamlconf` is able to read, type-check `typing.List` type feilds in dataclasses. ([#4](https://github.com/karthikrangasai/anton/pull/4))
 - Added `yaml_conf` decorator which allows creating dataclasses from yaml files for primitive types by avoiding boilerplate code.
 
 

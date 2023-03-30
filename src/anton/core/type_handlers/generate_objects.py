@@ -21,6 +21,10 @@ def generate_list_type_object(value: Any, parameter_type: Type) -> Any:
     return value
 
 
+def generate_set_type_object(value: Any, parameter_type: Type) -> Any:
+    return set(value)
+
+
 def generate_tuple_type_object(value: Any, parameter_type: Type) -> Any:
     return tuple(value)
 
@@ -141,6 +145,7 @@ TYPE_TO_OBJECT_GENERATOR_MAPPING: Dict[Any, Callable[[Any, Type], Any]] = {
     list: generate_list_type_object,
     tuple: generate_tuple_type_object,
     Union: generate_union_type_object,
+    set: generate_set_type_object,
 }
 
 
