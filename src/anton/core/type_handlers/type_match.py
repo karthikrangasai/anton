@@ -4,7 +4,7 @@ import typing
 import warnings
 from collections import OrderedDict
 from copy import deepcopy
-from typing import Any, Callable, Dict, Generator, List, Tuple, Type, Union
+from typing import Any, Callable, Dict, Generator, Hashable, List, Tuple, Type, Union
 
 from anton.core.type_handlers.constants import PRIMITIVE_TYPES
 
@@ -37,7 +37,22 @@ def does_list_type_match(value: Any, parameter_type: Type) -> bool:
     container_obeys_type = isinstance(value, List)
     if not container_obeys_type:
         return False
-    elements_obey_type = all([do_the_types_match(element, list_elements_type) for element in value])
+    elements_obey_type = all(do_the_types_match(element, list_elements_type) for element in value)
+    return elements_obey_type
+
+
+def does_set_type_match(value: Any, parameter_type: Type) -> bool:
+    # We recieve the value as `List` althought the type will be `Set`. Making sure it is a List.
+    # Set will have only one type.
+    list_elements_type = typing.get_args(parameter_type)[0]
+    container_obeys_type = isinstance(value, List)
+    if not container_obeys_type:
+        return False
+
+    # NOTE: set() only takes hashable types as inputs.
+    elements_obey_type = all(
+        isinstance(element, Hashable) and do_the_types_match(element, list_elements_type) for element in value
+    )
     return elements_obey_type
 
 
@@ -53,14 +68,14 @@ def does_tuple_type_match(value: Any, parameter_type: Type) -> bool:
     tuple_elements_type = typing.get_args(parameter_type)
     if len(tuple_elements_type) == 2 and tuple_elements_type[1] == Ellipsis:
         # Tuple[T, ...] Case
-        elements_obey_type = all([do_the_types_match(element, tuple_elements_type[0]) for element in value])
+        elements_obey_type = all(do_the_types_match(element, tuple_elements_type[0]) for element in value)
         return elements_obey_type
 
     # Tuple[T_1, T_2, ....., T_n] Default Case
     if len(tuple_elements_type) != len(value):
         return False
 
-    elements_obey_type = all([do_the_types_match(element, _type) for element, _type in zip(value, tuple_elements_type)])
+    elements_obey_type = all(do_the_types_match(element, _type) for element, _type in zip(value, tuple_elements_type))
     return elements_obey_type
 
 
@@ -70,8 +85,11 @@ def does_dict_type_match(value: Any, parameter_type: Type) -> bool:
     if not container_obeys_type:
         return False
 
-    keys_obey_type = all([do_the_types_match(element, key_elements_type) for element in value.keys()])
-    values_obey_type = all([do_the_types_match(element, value_elements_type) for element in value.values()])
+    # NOTE: In a Dict[K, V], `K` has to be a Hashable type.
+    keys_obey_type = all(
+        isinstance(element, Hashable) and do_the_types_match(element, key_elements_type) for element in value.keys()
+    )
+    values_obey_type = all(do_the_types_match(element, value_elements_type) for element in value.values())
     return keys_obey_type and values_obey_type
 
 
@@ -184,6 +202,7 @@ TYPE_TO_MATCHER_MAPPING: Dict[Any, Callable[[Any, Type], bool]] = {
     tuple: does_tuple_type_match,
     Any: does_any_type_match,
     Union: does_union_type_match,
+    set: does_set_type_match,
 }
 
 
