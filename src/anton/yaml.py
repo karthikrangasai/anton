@@ -25,7 +25,7 @@ def _yaml_conf_wrapper(
     actual_init = getattr(dataclass_cls, "__init__")
     setattr(dataclass_cls, "init_setter", actual_init)
 
-    def modified_init(self, conf_path: StrOrBytesPath) -> None:
+    def __init__(self, conf_path: StrOrBytesPath) -> None:
         conf_as_dict = yaml_load(conf_path)
         pos_args, kw_args = get_init_arguments(
             conf_as_dict,
@@ -34,14 +34,12 @@ def _yaml_conf_wrapper(
         )
         getattr(self, "init_setter")(*pos_args, **kw_args)
 
-    setattr(dataclass_cls, "__init__", modified_init)
+    setattr(dataclass_cls, "__init__", __init__)
 
     return dataclass_cls
 
 
 def yaml_conf(
-    cls=None,
-    /,
     *,
     repr: bool = True,
     eq: bool = True,
@@ -132,7 +130,4 @@ def yaml_conf(
     def wrap(cls):
         return _yaml_conf_wrapper(cls, repr=repr, eq=eq, order=order, unsafe_hash=unsafe_hash, frozen=frozen)
 
-    if cls is None:
-        return wrap
-
-    return wrap(cls)
+    return wrap
