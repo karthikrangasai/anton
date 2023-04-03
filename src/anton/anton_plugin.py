@@ -6,7 +6,6 @@ from mypy.plugins import dataclasses
 from mypy.plugins.common import add_method
 from mypy.types import NoneType, UnionType
 
-
 ANTON_DECORATORS = ["yaml_conf", "json_conf"]
 
 

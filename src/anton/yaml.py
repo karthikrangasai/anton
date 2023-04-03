@@ -111,7 +111,7 @@ def yaml_conf(
         ... \""")
         >>> temp_file.flush()
         >>>
-        >>> @yaml_conf
+        >>> @yaml_conf()
         ... class ExampleClass:
         ...     integer: int
         ...     string: str

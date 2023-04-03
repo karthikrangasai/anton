@@ -116,7 +116,7 @@ def json_conf(
         ... \""")
         >>> temp_file.flush()
         >>>
-        >>> @json_conf
+        >>> @json_conf()
         ... class ExampleClass:
         ...     integer: int
         ...     string: str

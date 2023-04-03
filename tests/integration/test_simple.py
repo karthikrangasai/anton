@@ -5,6 +5,8 @@ import pytest
 
 from anton import json_conf, yaml_conf
 
+FILENAME = "simple"
+
 YAML_TEST_CASE = """string: value
 integer: 69
 floating: 3.14
@@ -19,32 +21,40 @@ JSON_TEST_CASE = """{
 }"""
 
 
-@pytest.mark.parametrize(
-    ("conf_path_fixture_name", "file_name", "test_case", "test_func"),
-    [
-        ("base_dir_for_yaml_test_cases", "simple.yaml", YAML_TEST_CASE, yaml_conf),
-        ("base_dir_for_json_test_cases", "simple.json", JSON_TEST_CASE, json_conf),
-    ],
-)
-def test_simple_yaml(
-    request: pytest.FixtureRequest,
-    conf_path_fixture_name: str,
-    file_name: str,
-    test_case: str,
-    test_func: Callable[..., Any],
-) -> None:
-    conf_path: Path = request.getfixturevalue(conf_path_fixture_name)
+def test_simple_yaml(base_dir_for_yaml_test_cases: Path) -> None:
+    conf_path = base_dir_for_yaml_test_cases / f"{FILENAME}.yaml"
 
-    with open(conf_path / file_name, "w") as fp:
-        fp.write(test_case)
-
+    @yaml_conf()
     class SimpleConfiguration:
         string: str
         integer: int
         floating: float = 6.9
         boolean: bool = True
 
-    simple_obj = test_func(SimpleConfiguration, conf_path=conf_path / file_name)()
+    with open(conf_path, "w") as fp:
+        fp.write(YAML_TEST_CASE)
+
+    simple_obj = SimpleConfiguration(conf_path=conf_path)
+    assert simple_obj.string == "value"
+    assert simple_obj.integer == 69
+    assert simple_obj.floating != 6.9 and simple_obj.floating == 3.14
+    assert not simple_obj.boolean
+
+
+def test_simple_json(base_dir_for_json_test_cases: Path) -> None:
+    conf_path = base_dir_for_json_test_cases / f"{FILENAME}.json"
+
+    @json_conf()
+    class SimpleConfiguration:
+        string: str
+        integer: int
+        floating: float = 6.9
+        boolean: bool = True
+
+    with open(conf_path, "w") as fp:
+        fp.write(JSON_TEST_CASE)
+
+    simple_obj = SimpleConfiguration(conf_path=conf_path)
     assert simple_obj.string == "value"
     assert simple_obj.integer == 69
     assert simple_obj.floating != 6.9 and simple_obj.floating == 3.14

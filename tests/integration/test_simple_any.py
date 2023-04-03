@@ -5,6 +5,8 @@ import pytest
 
 from anton import json_conf, yaml_conf
 
+FILENAME = "simple_any"
+
 YAML_TEST_CASE = """any1: 1
 any2: \"2\"
 any3: 3.14
@@ -19,30 +21,35 @@ JSON_TEST_CASE = """{
 }"""
 
 
-@pytest.mark.parametrize(
-    ("conf_path_fixture_name", "file_name", "test_case", "test_func"),
-    [
-        ("base_dir_for_yaml_test_cases", "simple_any.yaml", YAML_TEST_CASE, yaml_conf),
-        ("base_dir_for_json_test_cases", "simple_any.json", JSON_TEST_CASE, json_conf),
-    ],
-)
-def test_simple_any(
-    request: pytest.FixtureRequest,
-    conf_path_fixture_name: str,
-    file_name: str,
-    test_case: str,
-    test_func: Callable[..., Any],
-) -> None:
-    conf_path: Path = request.getfixturevalue(conf_path_fixture_name)
+def test_yaml_simple_any(base_dir_for_yaml_test_cases: Path) -> None:
+    conf_path = base_dir_for_yaml_test_cases / f"{FILENAME}.yaml"
 
-    with open(conf_path / file_name, "w") as fp:
-        fp.write(test_case)
-
+    @yaml_conf()
     class SimpleAnyConfiguration:
         any1: Any
         any2: Any
         any3: Any
         any4: Any = 1000
 
-    simple_any_obj = test_func(SimpleAnyConfiguration, conf_path=conf_path / file_name)()
+    with open(conf_path, "w") as fp:
+        fp.write(YAML_TEST_CASE)
+
+    simple_any_obj = SimpleAnyConfiguration(conf_path=conf_path)
+    assert simple_any_obj.any4 != 1000 and isinstance(simple_any_obj.any4, bool) and not simple_any_obj.any4
+
+
+def test_json_simple_any(base_dir_for_json_test_cases: Path) -> None:
+    conf_path = base_dir_for_json_test_cases / f"{FILENAME}.json"
+
+    @json_conf()
+    class SimpleAnyConfiguration:
+        any1: Any
+        any2: Any
+        any3: Any
+        any4: Any = 1000
+
+    with open(conf_path, "w") as fp:
+        fp.write(JSON_TEST_CASE)
+
+    simple_any_obj = SimpleAnyConfiguration(conf_path=conf_path)
     assert simple_any_obj.any4 != 1000 and isinstance(simple_any_obj.any4, bool) and not simple_any_obj.any4
