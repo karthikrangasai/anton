@@ -14,8 +14,6 @@ def _yaml_conf_wrapper(
     cls,
     /,
     *,
-    conf_path: StrOrBytesPath,
-    init: bool = True,
     repr: bool = True,
     eq: bool = True,
     order: bool = False,
@@ -23,12 +21,12 @@ def _yaml_conf_wrapper(
     frozen: bool = False,
 ):
 
-    dataclass_cls = dataclass(cls, init=init, repr=repr, eq=eq, order=order, unsafe_hash=unsafe_hash, frozen=frozen)  # type: ignore
+    dataclass_cls = dataclass(cls, repr=repr, eq=eq, order=order, unsafe_hash=unsafe_hash, frozen=frozen)  # type: ignore
     actual_init = getattr(dataclass_cls, "__init__")
     setattr(dataclass_cls, "init_setter", actual_init)
 
-    def modified_init(self, yaml_conf_path: StrOrBytesPath = conf_path) -> None:
-        conf_as_dict = yaml_load(yaml_conf_path)
+    def modified_init(self, conf_path: StrOrBytesPath) -> None:
+        conf_as_dict = yaml_load(conf_path)
         pos_args, kw_args = get_init_arguments(
             conf_as_dict,
             getattr(dataclass_cls, "__dataclass_fields__"),
@@ -45,8 +43,6 @@ def yaml_conf(
     cls=None,
     /,
     *,
-    conf_path: StrOrBytesPath,
-    init: bool = True,
     repr: bool = True,
     eq: bool = True,
     order: bool = False,
@@ -117,14 +113,14 @@ def yaml_conf(
         ... \""")
         >>> temp_file.flush()
         >>>
-        >>> @yaml_conf(conf_path=temp_file.name)
+        >>> @yaml_conf
         ... class ExampleClass:
         ...     integer: int
         ...     string: str
         ...     point: Point
         ...     line_segment: LineSegment
         ...
-        >>> ExampleClass()
+        >>> ExampleClass(conf_path=temp_file.name)
         ExampleClass(integer=23, string='Hello world', point=Point(x=0, y=0), line_segment=LineSegment(first_point=Point(x=10, y=10), second_point=Point(x=10, y=10)))
 
     .. testcleanup::
@@ -134,9 +130,7 @@ def yaml_conf(
     """
 
     def wrap(cls):
-        return _yaml_conf_wrapper(
-            cls, conf_path=conf_path, init=init, repr=repr, eq=eq, order=order, unsafe_hash=unsafe_hash, frozen=frozen
-        )
+        return _yaml_conf_wrapper(cls, repr=repr, eq=eq, order=order, unsafe_hash=unsafe_hash, frozen=frozen)
 
     if cls is None:
         return wrap
