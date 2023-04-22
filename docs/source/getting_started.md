@@ -16,7 +16,6 @@ Consider a hypothetical YAML configuration file being used:
 
 ```yaml
 # saved in the file: index.yaml
-"""
 point1:
   x: 10
   y: 10
