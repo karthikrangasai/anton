@@ -16,7 +16,6 @@ Consider a hypothetical YAML configuration file being used:
 
 ```yaml
 # saved in the file: index.yaml
-"""
 point1:
   x: 10
   y: 10
@@ -120,11 +119,13 @@ With `anton`, all the boilerplate can be avoided by using the decorators `yaml_c
 ```python
 import anton
 
-@anton.yaml_conf(conf_path="index.yaml")
+@anton.yaml_conf()
 class CustomInput:
     point1: Point
     point2: Point
     line_segment1: LineSegment
     line_segment2: LineSegment
+
+custom_input = CustomInput(conf_path="index.yaml")
 
 ```

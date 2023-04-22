@@ -4,7 +4,7 @@
 
 [![CI testing](https://github.com/karthikrangasai/anton/actions/workflows/ci-testing.yml/badge.svg)](https://github.com/karthikrangasai/anton/actions/workflows/ci-testing.yml)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
-[![Documentation Status](https://readthedocs.org/projects/anton/badge/?version=latest)](https://anton.readthedocs.io/en/latest/?badge=latest)
+<!-- [![Documentation Status](https://readthedocs.org/projects/anton/badge/?version=latest)](https://anton.readthedocs.io/en/latest/?badge=latest) -->
 
 <!-- [![PyPI](https://img.shields.io/pypi/v/anton)](Add PyPI Link here) -->
 <!-- [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/karthikrangasai/anton/blob/master/training_notebook.ipynb) -->
@@ -57,14 +57,14 @@ line_segment:
 ...     first_point: Point
 ...     second_point: Point
 ...
->>> @yaml_conf(conf_path="index.yaml")
+>>> @yaml_conf()
 ... class ExampleClass:
 ...     integer: int
 ...     string: str
 ...     point: Point
 ...     line_segment: LineSegment
 ...
->>> example_obj = ExampleClass()
+>>> example_obj = ExampleClass(conf_path="index.yaml")
 >>> example_obj
 ExampleClass(integer=23, string='Hello world', point=Point(x=0, y=0), line_segment=LineSegment(first_point=Point(x=10, y=10), second_point=Point(x=10, y=10)))
 ```
